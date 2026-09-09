@@ -9,6 +9,8 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# public/ is not in the repo (no static assets; git drops empty dirs) — the runner COPYs it unconditionally.
+RUN mkdir -p public
 # NEXT_PUBLIC_ vars are inlined at build time.
 ARG NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
