@@ -15,6 +15,8 @@ from .models import CartHold, Customer, Order, OrderLine
 from .services import available_stock
 
 router = Router(tags=["checkout"], auth=JWTAuth())
+# درگاه پرداخت (بانک/Zibal) با توکن مشتری callback نمی‌زند — این مسیر عمومی است.
+public_router = Router(tags=["checkout"])
 
 # هزینه ارسال ثابت به تومان — همان مقادیر سبد خرید.
 SHIPPING_COSTS = {
@@ -201,7 +203,7 @@ def verify_payment(request, payload: VerifyPaymentIn):
     )
 
 
-@router.post("/checkout/mock-pay")
+@public_router.post("/checkout/mock-pay")
 def mock_pay(request, payload: MockPayIn):
     """Simulates the bank callback — only active with the mock provider."""
     if settings.PAYMENT_PROVIDER != "mock":
