@@ -45,7 +45,7 @@ class MockGateway:
         MockGateway.payments[track_id] = {"paid": False, "ref_id": "", "amount_rial": amount_rial}
         url = (
             f"{settings.FRONTEND_URL}/mock-payment"
-            f"?track_id={track_id}&order={order_number}"
+            f"?track_id={track_id}&order={order_number}&amount={amount_rial // 10}"
         )
         return url, track_id
 

@@ -39,13 +39,6 @@ const PROVINCES = [
   "کهگیلویه و بویراحمد",
 ];
 
-interface StockIssue {
-  title?: string;
-  product_id?: number;
-  requested?: number;
-  available?: number;
-}
-
 export default function CheckoutPage() {
   const [session, setSession] = useState<CustomerSession | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
@@ -65,7 +58,6 @@ export default function CheckoutPage() {
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [stockIssues, setStockIssues] = useState<StockIssue[]>([]);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -102,7 +94,6 @@ export default function CheckoutPage() {
   async function submitOrder(_: FormEvent) {
     _.preventDefault();
     setError(null);
-    setStockIssues([]);
     if (!validateForm() || !session || busy) return;
 
     setBusy(true);
@@ -144,9 +135,6 @@ export default function CheckoutPage() {
       if (!resp.ok) {
         const detail = body?.detail ?? body?.message ?? `خطای ${resp.status}`;
         setError(String(detail));
-        // موجودی ناکافی — اقلام مشکل‌دار را جدا کن
-        if (Array.isArray(body?.insufficient_stock)) setStockIssues(body.insufficient_stock);
-        else if (Array.isArray(body?.items)) setStockIssues(body.items);
         return;
       }
 
@@ -396,18 +384,6 @@ export default function CheckoutPage() {
             {error && (
               <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400">
                 <p>{error}</p>
-                {stockIssues.length > 0 && (
-                  <ul className="mt-2 list-inside list-disc space-y-1 text-xs">
-                    {stockIssues.map((si, i) => (
-                      <li key={i}>
-                        {si.title ?? `قطعه ${si.product_id}`} —{" "}
-                        {si.available != null
-                          ? `فقط ${si.available} عدد موجود است`
-                          : "موجودی کافی نیست"}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
             )}
 
