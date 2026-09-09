@@ -31,26 +31,34 @@ SMS_PROVIDER=console         # kavenegar بعداً
 wired through `frontend/railway.json`):
 
 ```bash
-NEXT_PUBLIC_API_URL=https://<backend>.up.railway.app/api/v1   # browser-side
-API_URL=http://backend.railway.internal:8000/api/v1           # RSC server-side (private net)
+NEXT_PUBLIC_API_URL=https://<backend>.up.railway.app   # origin ONLY — code appends /api/v1 itself
+PORT=3000                                              # Next standalone binds $PORT; the domain targets 3000
 ```
 
 Deploy order matters: deploy **backend first**, generate its public domain,
-then set that URL in the frontend's `NEXT_PUBLIC_API_URL` — Next inlines
+then set that origin in the frontend's `NEXT_PUBLIC_API_URL` — Next inlines
 `NEXT_PUBLIC_*` at build time, so the frontend must be built with the final
-backend URL.
+backend URL (any change to it triggers a rebuild).
 
 ## After the first deploy
 
+`DATABASE_URL` resolves to the private network (`postgres.railway.internal`),
+so `railway run` (which executes locally) can't reach the database. Run
+management commands **inside the container** via SSH instead:
+
 ```bash
 # seed the demo catalog (12 products / 3 variants)
-railway run --service backend python manage.py seed_demo_data
+railway ssh --service backend python manage.py seed_demo_data
 
-# admin user for /login
-railway run --service backend python manage.py createsuperuser
+# admin user for /login (generate a real password; this one is an example)
+railway ssh --service backend env DJANGO_SUPERUSER_PASSWORD='<password>' \
+  python manage.py createsuperuser --noinput --username pouria --email pouria@yadakpro.ir
 ```
 
-(`entrypoint.sh` already runs `migrate` + `collectstatic` on every deploy.)
+(SSH needs a key: `ssh-keygen -t ed25519` once, `railway ssh keys add`, and
+`ssh-keyscan -t ed25519 ssh.railway.com >> ~/.ssh/known_hosts` on headless
+machines. `entrypoint.sh` already runs `migrate` + `collectstatic` on every
+deploy.)
 
 ## Media
 
