@@ -10,6 +10,9 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 if os.environ.get("SECURE_SSL_REDIRECT", "0") == "1":
     SECURE_SSL_REDIRECT = True
 
+# whitenoise for static; media stays on the local filesystem (ephemeral on
+# Railway — reseeded on demand; the Arvan VPS mounts a shared volume).
 STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
