@@ -46,8 +46,10 @@ interface ProductDetail {
 
 async function fetchProduct(id: number): Promise<ProductDetail | null> {
   try {
+    // no-store: قیمت/موجودی PDP باید لحظه‌ای باشد (رزروهای ۱۵ دقیقه‌ای هر لحظه
+    // تغییر می‌کنند و بک‌اند نمی‌تواند کش ISR نکست را باطل کند).
     const resp = await fetch(`${API_BASE}/api/v1/catalog/products/${id}`, {
-      next: { revalidate: 30 },
+      cache: "no-store",
     });
     if (!resp.ok) return null;
     return (await resp.json()) as ProductDetail;

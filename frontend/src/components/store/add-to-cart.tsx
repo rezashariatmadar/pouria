@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { toman } from "@/lib/format";
+import { faDigits, toman } from "@/lib/format";
 import { useCart } from "@/stores/cart";
 import { VariantPicker, type VariantInfo } from "./variant-picker";
 import { QtyStepper } from "./qty-stepper";
@@ -105,7 +105,7 @@ export function BuyBox({ data }: { data: BuyBoxData }) {
               <span className="text-3xl font-black text-gray-900">{toman(unitPrice * qty)}</span>
               {qty > 1 && (
                 <span className="text-[11px] text-gray-400">
-                  ({qty} × {toman(unitPrice)})
+                  ({faDigits(qty)} × {toman(unitPrice)})
                 </span>
               )}
             </div>

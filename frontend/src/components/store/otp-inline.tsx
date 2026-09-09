@@ -11,34 +11,13 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 
 import { api, ApiError } from "@/lib/api-client";
 import { faDigits } from "@/lib/format";
+import { setCustomer, type CustomerSession } from "@/lib/customer-session";
+
+// سازگاری با importهای قبلی (checkout/page و…) — منبع حقیقت: lib/customer-session
+export { getCustomer, clearCustomer } from "@/lib/customer-session";
+export type { CustomerSession } from "@/lib/customer-session";
 
 const PHONE_PATTERN = /^09\d{9}$/;
-const OTP_KEY = "yadak_customer";
-
-export interface CustomerSession {
-  access: string;
-  refresh: string;
-  phone: string;
-}
-
-/** خواندن نشست مشتری — فقط سمت کلاینت (sessionStorage). */
-export function getCustomer(): CustomerSession | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = sessionStorage.getItem(OTP_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (parsed?.access && parsed?.phone) return parsed as CustomerSession;
-  } catch {
-    // JSON خراب — نادیده بگیر
-  }
-  return null;
-}
-
-export function clearCustomer() {
-  if (typeof window === "undefined") return;
-  sessionStorage.removeItem(OTP_KEY);
-}
 
 export function OtpInline({ onAuthed }: { onAuthed: (s: CustomerSession) => void }) {
   const [phone, setPhone] = useState("");
@@ -106,7 +85,7 @@ export function OtpInline({ onAuthed }: { onAuthed: (s: CustomerSession) => void
         refresh: res.refresh,
         phone: res.phone ?? phone,
       };
-      sessionStorage.setItem(OTP_KEY, JSON.stringify(session));
+      setCustomer(session);
       onAuthed(session);
     } catch (err: any) {
       setError(err instanceof ApiError ? err.message : (err?.message ?? "کد تایید نشد"));

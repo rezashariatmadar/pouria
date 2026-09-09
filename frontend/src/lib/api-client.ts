@@ -3,6 +3,8 @@
  * Customer tokens (M4): access در حافظه، refresh در httpOnly cookie از طریق /auth/token.
  */
 
+import { clearCustomer, getCustomer } from "@/lib/customer-session";
+
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export class ApiError extends Error {
@@ -38,11 +40,21 @@ async function parse(resp: Response): Promise<any> {
   return body;
 }
 
-async function request(method: string, path: string, body?: unknown, auth = false): Promise<any> {
+/**
+ * حالت احراز هویت: false = عمومی، true/"admin" = توکن ادمین (localStorage)،
+ * "customer" = توکن OTP مشتری (sessionStorage — lib/customer-session).
+ */
+export type AuthMode = false | true | "admin" | "customer";
+
+async function request(method: string, path: string, body?: unknown, auth: AuthMode = false): Promise<any> {
   const headers: Record<string, string> = {};
   if (body !== undefined) headers["Content-Type"] = "application/json";
-  if (auth) {
+  const isAdmin = auth === true || auth === "admin";
+  if (isAdmin) {
     const token = getAdminToken();
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+  } else if (auth === "customer") {
+    const token = getCustomer()?.access ?? null;
     if (token) headers["Authorization"] = `Bearer ${token}`;
   }
 
@@ -55,8 +67,12 @@ async function request(method: string, path: string, body?: unknown, auth = fals
 
   // توکن منقضی یا نامعتبر؟ پاک کن و بفرست به لاگین (M4: refresh endpoint برای مشتری‌ها)
   if (resp.status === 401 && auth) {
-    setAdminToken(null);
-    if (typeof window !== "undefined") window.location.href = "/login";
+    if (isAdmin) {
+      setAdminToken(null);
+      if (typeof window !== "undefined") window.location.href = "/login";
+      throw new ApiError(401, "نشست شما منقضی شد — دوباره وارد شوید");
+    }
+    clearCustomer();
     throw new ApiError(401, "نشست شما منقضی شد — دوباره وارد شوید");
   }
 
@@ -64,9 +80,9 @@ async function request(method: string, path: string, body?: unknown, auth = fals
 }
 
 export const api = {
-  get: (path: string, auth = false) => request("GET", path, undefined, auth),
-  post: (path: string, body?: unknown, auth = false) => request("POST", path, body, auth),
-  patch: (path: string, body?: unknown, auth = false) => request("PATCH", path, body, auth),
+  get: (path: string, auth: AuthMode = false) => request("GET", path, undefined, auth),
+  post: (path: string, body?: unknown, auth: AuthMode = false) => request("POST", path, body, auth),
+  patch: (path: string, body?: unknown, auth: AuthMode = false) => request("PATCH", path, body, auth),
   auth: {
     adminLogin: (username: string, password: string) =>
       request("POST", "/auth/admin/login", { username, password }),

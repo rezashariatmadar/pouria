@@ -37,11 +37,13 @@ function ResultInner() {
     }
     try {
       // دقیقاً مطابق VerifyPaymentIn بک‌اند: {order_number, track_id}
+      // مسیر JWT-دار است → توکن مشتری از sessionStorage (lib/customer-session)
       const trackId = params.get("track_id") ?? "";
-      const res = await api.post("/checkout/verify-payment", {
-        order_number: orderNumber,
-        track_id: trackId,
-      });
+      const res = await api.post(
+        "/checkout/verify-payment",
+        { order_number: orderNumber, track_id: trackId },
+        "customer"
+      );
       const paid = Boolean(res?.paid ?? res?.success ?? res?.status === "paid");
       setTotal(typeof res?.total_amount === "number" ? res.total_amount : null);
       if (paid) {
