@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت | تعریف محصول جدید</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 hidden md:flex min-h-screen sticky top-0 h-screen border-l border-slate-800">
+    <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800 bg-slate-950/40">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold shadow-lg shadow-amber-500/20">یدک</div>
+      <div>
+        <div class="font-bold text-white text-base leading-tight">یدک‌پرو (پوریا)</div>
+        <div class="text-[11px] text-slate-400">پنل مدیریت انبار و قیمت</div>
+      </div>
+    </div>
+
+    <nav class="p-4 space-y-1.5 flex-1">
+      <div class="text-[11px] font-semibold text-slate-400 px-3 py-1 uppercase tracking-wider">مدیریت محصولات</div>
+      <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+        <span>ویرایش سریع قیمت و موجودی</span>
+      </a>
+
+      <a href="product-add.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-amber-500/10 text-amber-400 font-medium border border-amber-500/20">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>تعریف محصول جدید</span>
+        </div>
+        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+      </a>
+
+      <div class="text-[11px] font-semibold text-slate-400 px-3 pt-4 pb-1 uppercase tracking-wider">سفارش‌ها و فروش</div>
+      <a href="orders.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          <span>لیست سفارشات (بررسی شاسی)</span>
+        </div>
+        <span class="px-2 py-0.5 text-xs bg-red-500/20 text-red-400 rounded-full font-bold">۲ جدید</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+    <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="text-slate-400 hover:text-slate-700 transition">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <h1 class="text-lg font-bold text-slate-900">ثبت قطعه و محصول جدید</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="window.location.href='index.html'" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition border border-slate-300">
+          انصراف
+        </button>
+        <button onclick="saveProduct()" class="px-5 py-2 text-xs font-bold text-white bg-amber-500 hover:bg-amber-600 rounded-lg transition shadow-md shadow-amber-500/20 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+          ذخیره و ثبت نهایی قطعه
+        </button>
+      </div>
+    </header>
+
+    <div class="p-6 max-w-4xl mx-auto w-full space-y-6">
+
+      <!-- Form Card: Basic Info -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <h2 class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+          اطلاعات اصلی قطعه
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="md:col-span-2">
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">عنوان کامل قطعه *</label>
+            <input type="text" placeholder="مثلاً: دیسک ترمز چرخ جلو پژو 206 تیپ 5" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">برند قطعه * (هر برند = یک کالای مجزا)</label>
+            <select class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 text-slate-700 outline-hidden">
+              <option>ایساکو (ISACO اصل شرکتی)</option>
+              <option>کروز (Crouse)</option>
+              <option>سایپا یدک</option>
+              <option>والئو (Valeo)</option>
+              <option>عظام (Ezam)</option>
+              <option>تکستار (Textar)</option>
+              <option>سایر برندهای متفرقه</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">دسته‌بندی فنی *</label>
+            <select class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 text-slate-700 outline-hidden">
+              <option>سیستم ترمز (لنت، دیسک، کاسه)</option>
+              <option>جلوبندی و تعلیق (کمک فنر، سیبک، طبق)</option>
+              <option>سیستم خنک‌کننده (رادیاتور، واترپمپ، ترموستات)</option>
+              <option>قطعات برقی (کوئل، سنسورها، استارت، دینام)</option>
+              <option>قطعات بدنه و تزئینات (چراغ، آینه، سپر)</option>
+              <option>کیت کلاچ و انتقال قدرت</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">کد اختصاصی ایساکو یا شماره فنی کارخانه</label>
+            <input type="text" placeholder="مثلاً: 16401002" class="w-full font-mono bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">نوع ضمانت و اصالت</label>
+            <select class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 text-slate-700 outline-hidden">
+              <option>ضمانت اصالت فیزیکی و تطابق پارت‌نامبر</option>
+              <option>دارای گارانتی ۶ ماهه شرکتی</option>
+              <option>دارای گارانتی ۱۲ ماهه تعویض</option>
+              <option>فاقد گارانتی (قطعه مصرفی / برقی)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Card: Vehicle Compatibility -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <h2 class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            خودروهای سازگار با این قطعه (جهت فیلتر سایت)
+          </div>
+          <span class="text-[11px] text-slate-400 font-normal">امکان انتخاب چند خودرو</span>
+        </h2>
+
+        <!-- Fast Checkboxes -->
+        <div class="space-y-3">
+          <div>
+            <div class="text-xs font-bold text-blue-900 mb-2">ایران خودرو:</div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" checked class="rounded text-amber-500 focus:ring-amber-400">
+                <span>پژو ۲۰۶ (تیپ ۵)</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>پژو ۲۰۶ (تیپ ۲)</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" checked class="rounded text-amber-500 focus:ring-amber-400">
+                <span>پژو ۲۰۷</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" checked class="rounded text-amber-500 focus:ring-amber-400">
+                <span>رانا / رانا پلاس</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>پژو پارس TU5</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>سمند EF7</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>دنا / دنا پلاس</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>تارا</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-xs font-bold text-orange-900 mb-2">سایپا:</div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>پراید (صبا / ۱۳۱ / ۱۱۱)</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>تیبا ۱ و ۲</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>ساینا / ساینا S</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-white cursor-pointer">
+                <input type="checkbox" class="rounded text-amber-500 focus:ring-amber-400">
+                <span>کوئیک / کوئیک R</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Card: Positional Variations (Left / Right) -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div>
+            <h2 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+              تنوع موقعیت قطعه (سمت چپ / راست)
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">برای قطعاتی مانند چراغ، آینه، گلگیر، سیبک یا کمک فنر</p>
+          </div>
+          <label class="flex items-center gap-2 cursor-pointer bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200">
+            <input type="checkbox" id="hasVariantsToggle" onchange="toggleVariantSection()" class="rounded text-amber-500 focus:ring-amber-400">
+            <span class="text-xs font-semibold text-slate-700">این قطعه دارای جهت چپ/راست است</span>
+          </label>
+        </div>
+
+        <!-- Single Product Pricing (Default) -->
+        <div id="singlePricingSection" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">قیمت فروش (تومان) *</label>
+            <input type="text" placeholder="مثلاً: 1,450,000" class="w-full font-mono bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">موجودی انبار *</label>
+            <input type="number" placeholder="مثلاً: 8" class="w-full font-mono bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1.5">سقف خرید هر مشتری</label>
+            <input type="number" value="4" class="w-full font-mono bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden">
+          </div>
+        </div>
+
+        <!-- Variant Pricing Table (Hidden by default) -->
+        <div id="variantPricingSection" class="hidden space-y-3 pt-2">
+          <div class="bg-amber-50/50 border border-amber-200/80 rounded-xl p-3 text-xs text-amber-900 leading-relaxed">
+            کاربر در صفحه محصول می‌تواند منوی انتخاب جهت (سمت راست / سمت چپ / جفت) را انتخاب کند:
+          </div>
+
+          <div class="border border-slate-200 rounded-xl overflow-hidden">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-50 text-slate-700 border-b border-slate-200 font-bold">
+                <tr>
+                  <th class="p-3">جهت قطعه</th>
+                  <th class="p-3">قیمت (تومان)</th>
+                  <th class="p-3">موجودی انبار</th>
+                  <th class="p-3">وضعیت</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr>
+                  <td class="p-3 font-semibold text-slate-800">سمت راست (سمت شاگرد)</td>
+                  <td class="p-3"><input type="text" value="1,450,000" class="w-32 bg-white border border-slate-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><input type="number" value="4" class="w-20 bg-white border border-slate-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><span class="text-emerald-700 font-bold">فعال</span></td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold text-slate-800">سمت چپ (سمت راننده)</td>
+                  <td class="p-3"><input type="text" value="1,450,000" class="w-32 bg-white border border-slate-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><input type="number" value="2" class="w-20 bg-red-50 text-red-700 border border-red-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><span class="text-amber-700 font-bold">کمبود انبار</span></td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold text-slate-800">جفت (چپ و راست باهم)</td>
+                  <td class="p-3"><input type="text" value="2,800,000" class="w-32 bg-white border border-slate-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><input type="number" value="2" class="w-20 bg-white border border-slate-300 rounded-lg p-1.5 font-mono"></td>
+                  <td class="p-3"><span class="text-emerald-700 font-bold">فعال</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleVariantSection() {
+      const isChecked = document.getElementById('hasVariantsToggle').checked;
+      document.getElementById('singlePricingSection').classList.toggle('hidden', isChecked);
+      document.getElementById('variantPricingSection').classList.toggle('hidden', !isChecked);
+    }
+
+    function saveProduct() {
+      alert('قطعه جدید با موفقیت در انبار ثبت شد! به جدول قیمت‌ها هدایت می‌شوید.');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

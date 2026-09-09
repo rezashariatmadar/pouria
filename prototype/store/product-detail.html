@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>چراغ جلو کوئیک (کروز اصل خط تولید) | یدک‌پرو</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    .zoom-container {
+      overflow: hidden;
+      cursor: crosshair;
+    }
+    .zoom-container img {
+      transition: transform 0.3s ease-out;
+    }
+    .zoom-container:hover img {
+      transform: scale(1.35);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-orange-500/20">یدک</div>
+          <span class="font-black text-slate-900 text-lg">یدک‌پـرو</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="catalog.html" class="cursor-pointer text-xs text-slate-600 hover:text-orange-600 font-bold flex items-center gap-1 transition">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          <span>بازگشت به کاتالوگ قطعات</span>
+        </a>
+        <a href="../admin/index.html" class="text-xs text-amber-600 font-bold hover:underline bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl">پنل ادمین (پوریا)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 w-full">
+    <nav class="flex text-xs text-slate-400 gap-2 items-center font-medium">
+      <a href="index.html" class="hover:text-slate-800 transition">خانه</a>
+      <span>/</span>
+      <a href="catalog.html" class="hover:text-slate-800 transition">لوازم یدکی سایپا</a>
+      <span>/</span>
+      <a href="catalog.html" class="hover:text-slate-800 transition">کوئیک و کوئیک S</a>
+      <span>/</span>
+      <span class="text-slate-900 font-bold">چراغ جلو کوئیک (کروز اصل)</span>
+    </nav>
+  </div>
+
+  <!-- PDP Main Grid -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 flex-1 w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- Left/Center Columns: Gallery, Variations & Specs -->
+    <div class="lg:col-span-2 space-y-6">
+      
+      <!-- Main Product Overview Box -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-7">
+        
+        <!-- Gallery with 4 Angles & Advanced Mouse-Tracking Zoom (JS Interaction) -->
+        <div class="space-y-3.5">
+          <div id="zoomFrame" class="zoom-container h-80 sm:h-96 rounded-3xl relative border border-slate-200 shadow-inner bg-slate-950 flex items-center justify-center overflow-hidden group cursor-crosshair">
+            <img id="mainProductImage" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1000&auto=format&fit=crop&q=85" alt="چراغ جلو کوئیک" class="w-full h-full object-cover transition-transform duration-100 ease-out origin-center">
+            
+            <span class="absolute top-3.5 right-3.5 bg-orange-600 text-white text-xs font-black px-3 py-1 rounded-xl shadow-md shadow-orange-500/20 z-10 pointer-events-none">کروز اصل خط تولید</span>
+            <span class="absolute top-3.5 left-3.5 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-xl shadow-xs z-10 pointer-events-none">موجود در انبار</span>
+            
+            <div id="zoomBadge" class="absolute bottom-3 right-3 bg-slate-950/80 text-white text-[10px] px-3 py-1.5 rounded-xl backdrop-blur-md z-10 pointer-events-none flex items-center gap-1.5 border border-slate-700">
+              <svg class="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+              <span>ماوس را روی تصویر حرکت دهید تا زوم شود</span>
+            </div>
+
+            <div id="angleLabel" class="absolute bottom-3 left-3 bg-slate-900/90 text-amber-400 font-bold text-[10px] px-2.5 py-1 rounded-lg backdrop-blur-md z-10 pointer-events-none border border-slate-800">
+              زاویه ۱: نمای روبرو و طلق شفاف
+            </div>
+          </div>
+
+          <!-- 4 Angle Switcher Thumbnails -->
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="setAngle('angle1', 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1000&auto=format&fit=crop&q=85', 'زاویه ۱: نمای روبرو و طلق شفاف', this)" class="angle-btn h-20 rounded-2xl border-2 border-orange-500 overflow-hidden cursor-pointer transition shadow-2xs relative group">
+              <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+              <span class="absolute bottom-0 inset-x-0 bg-slate-950/80 text-white text-[8px] py-0.5 text-center font-bold">روبرو</span>
+            </button>
+
+            <button onclick="setAngle('angle2', 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1000&auto=format&fit=crop&q=85', 'زاویه ۲: پشت کاسه و موتور تنظیم زاویه نور', this)" class="angle-btn h-20 rounded-2xl border border-slate-200 overflow-hidden cursor-pointer hover:border-slate-400 transition relative group">
+              <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+              <span class="absolute bottom-0 inset-x-0 bg-slate-950/80 text-white text-[8px] py-0.5 text-center font-bold">پشت چراغ</span>
+            </button>
+
+            <button onclick="setAngle('angle3', 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=1000&auto=format&fit=crop&q=85', 'زاویه ۳: سوکت برق و کانکتور فابریک خط تولید', this)" class="angle-btn h-20 rounded-2xl border border-slate-200 overflow-hidden cursor-pointer hover:border-slate-400 transition relative group">
+              <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+              <span class="absolute bottom-0 inset-x-0 bg-slate-950/80 text-white text-[8px] py-0.5 text-center font-bold">سوکت برق</span>
+            </button>
+
+            <button onclick="setAngle('angle4', 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1000&auto=format&fit=crop&q=85', 'زاویه ۴: بسته‌بندی شرکتی با هولوگرام اصالت کروز', this)" class="angle-btn h-20 rounded-2xl border border-slate-200 overflow-hidden cursor-pointer hover:border-slate-400 transition relative group">
+              <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+              <span class="absolute bottom-0 inset-x-0 bg-slate-950/80 text-white text-[8px] py-0.5 text-center font-bold">پلمپ کارتن</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Details & Variations -->
+        <div class="space-y-4">
+          <div>
+            <span class="inline-block bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-lg mb-2">روشنایی و بدنه کوئیک</span>
+            <h1 class="text-base sm:text-lg font-black text-slate-900 leading-snug">
+              چراغ جلو کوئیک و کوئیک S (کروز اصل خط تولید سایپا)
+            </h1>
+            <div class="flex items-center gap-3 text-xs text-slate-400 mt-1 font-mono">
+              <span>کد فنی: CR-QK-04</span>
+              <span>•</span>
+              <span class="text-emerald-700 font-sans font-bold">اصالت تضمین‌شده</span>
+            </div>
+          </div>
+
+          <!-- Compatibility Box -->
+          <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900 space-y-1.5 shadow-2xs">
+            <div class="font-bold flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              <span>سازگاری ۱۰۰٪ تایید شده با خودروهای زیر:</span>
+            </div>
+            <div class="text-[11px] text-emerald-700 leading-relaxed pr-6">
+              سایپا کوئیک دنده‌ای، کوئیک R، کوئیک S، کوئیک GXR و کوئیک اتوماتیک (تمامی مدل‌های سال ۱۳۹۷ به بعد)
+            </div>
+          </div>
+
+          <!-- Positional Variation Selector (Crucial Business Decision) -->
+          <div class="space-y-2 pt-1">
+            <div class="flex items-center justify-between">
+              <label class="block text-xs font-bold text-slate-800">جهت مورد نیاز را انتخاب کنید: *</label>
+              <span class="text-[11px] text-slate-400">قیمت بر اساس جهت</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2.5">
+              <button onclick="selectVariant('right', 1450000, 4)" id="btnRight" class="cursor-pointer variant-btn p-3 rounded-2xl border-2 border-orange-500 bg-orange-50/60 text-xs font-extrabold text-orange-950 text-center transition shadow-xs">
+                <div>سمت راست</div>
+                <div class="text-[10px] font-normal text-slate-500 mt-0.5">(سمت شاگرد)</div>
+              </button>
+
+              <button onclick="selectVariant('left', 1450000, 2)" id="btnLeft" class="cursor-pointer variant-btn p-3 rounded-2xl border border-slate-200 bg-white text-xs font-bold text-slate-700 text-center hover:border-slate-300 transition">
+                <div>سمت چپ</div>
+                <div class="text-[10px] font-normal text-slate-500 mt-0.5">(سمت راننده)</div>
+              </button>
+
+              <button onclick="selectVariant('pair', 2800000, 2)" id="btnPair" class="cursor-pointer variant-btn p-3 rounded-2xl border border-slate-200 bg-white text-xs font-bold text-slate-700 text-center hover:border-slate-300 transition">
+                <div>یک جفت</div>
+                <div class="text-[10px] font-normal text-slate-500 mt-0.5">(چپ و راست)</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bullets -->
+          <div class="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
+            <div class="flex items-center gap-2.5">
+              <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
+              <span>دارای موتور فابریک تنظیم ارتفاع زاویه نور</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
+              <span>طلق پلی‌کربنات مقاوم در برابر مات شدن و اشعه UV خورشید</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
+              <span>پلمپ کارتن اصلی شرکت کروز همراه با هولوگرام اصالت</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Technical Specifications & Details Tabs -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-xs space-y-5">
+        <div class="flex border-b border-slate-200 gap-6 text-xs font-bold">
+          <button onclick="switchTab('specs', this)" class="tab-btn pb-3 text-orange-600 border-b-2 border-orange-600 cursor-pointer">مشخصات فنی و اصالت</button>
+          <button onclick="switchTab('models', this)" class="tab-btn pb-3 text-slate-400 hover:text-slate-700 cursor-pointer">لیست کامل خودروهای سازگار</button>
+          <button onclick="switchTab('shipping', this)" class="tab-btn pb-3 text-slate-400 hover:text-slate-700 cursor-pointer">شرایط ارسال تهران و شهرستان</button>
+        </div>
+
+        <!-- Specs Tab -->
+        <div id="tabContentSpecs" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+          <div class="flex justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100">
+            <span class="text-slate-500">برند تولیدکننده:</span>
+            <span class="font-extrabold text-slate-900">شرکت کروز (Crouse اصل)</span>
+          </div>
+          <div class="flex justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100">
+            <span class="text-slate-500">کشور سازنده:</span>
+            <span class="font-extrabold text-slate-900">ایران (خط تولید سایپا)</span>
+          </div>
+          <div class="flex justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100">
+            <span class="text-slate-500">نوع لامپ پایه:</span>
+            <span class="font-extrabold text-slate-900">H4 دوکنتاکت فابریک</span>
+          </div>
+          <div class="flex justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100">
+            <span class="text-slate-500">وضعیت گارانتی:</span>
+            <span class="font-extrabold text-emerald-700">تضمین سلامت فیزیکی و اصالت کالا</span>
+          </div>
+        </div>
+
+        <!-- Models Tab -->
+        <div id="tabContentModels" class="hidden text-xs text-slate-600 space-y-3 leading-relaxed">
+          <p class="font-bold text-slate-900">این قطعه کاملاً فابریک بوده و بدون هیچ‌گونه نیاز به تغییر در سیم‌کشی روی خودروهای زیر نصب می‌شود:</p>
+          <div class="grid grid-cols-2 gap-2 text-slate-700">
+            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">• سایپا کوئیک دنده‌ای ساده</div>
+            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">• سایپا کوئیک R (دو رنگ)</div>
+            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">• سایپا کوئیک S فیس‌لیفت</div>
+            <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">• سایپا کوئیک پلاس اتوماتیک</div>
+          </div>
+        </div>
+
+        <!-- Shipping Tab -->
+        <div id="tabContentShipping" class="hidden text-xs text-slate-600 space-y-3 leading-relaxed">
+          <div class="p-4 bg-orange-50/60 border border-orange-200 rounded-2xl space-y-1 text-orange-950">
+            <strong class="text-xs">تحویل اکسپرس ۱ تا ۲ ساعته تهران:</strong>
+            <p class="text-[11px] text-orange-800">ارسال مستقیم از انبار چراغ برق با اسنپ‌باکس یا پیک موتوری حباب‌پیچ ضدضربه.</p>
+          </div>
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
+            <strong class="text-xs text-slate-900">ارسال به سراسر کشور:</strong>
+            <p class="text-[11px] text-slate-600">بسته‌بندی در کارتن دوجداره همراه با ضربه‌گیر؛ ارسال روزانه با تیپاکس (تحویل ۲۴ ساعته) یا باربری ترمینال.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequently Bought Together / Smart Automotive Bundle (NEW JS INTERACTION) -->
+      <div class="bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
+            <h3 class="text-sm font-black text-slate-900">خرید بسته‌ای هوشمند (همراه با این قطعه معمولاً خریده می‌شود)</h3>
+          </div>
+          <span class="text-[11px] font-bold text-orange-700 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-xl">
+            تخفیف ویژه پک: ۷۰,۰۰۰ تومان
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+          
+          <!-- Item 1: Headlight -->
+          <label class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer">
+            <input type="checkbox" id="bundleItem1" checked disabled class="rounded text-orange-600 focus:ring-orange-500 cursor-not-allowed">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=100&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0">
+            <div class="text-xs min-w-0">
+              <div class="font-bold text-slate-900 truncate">چراغ جلو کوئیک کروز</div>
+              <div class="font-mono text-[11px] text-slate-500">۱,۴۵۰,۰۰۰ ت (اصلی)</div>
+            </div>
+          </label>
+
+          <!-- Item 2: H4 Bulb -->
+          <label class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer hover:border-orange-300 transition">
+            <input type="checkbox" id="bundleItem2" checked onchange="updateBundleTotal()" class="bundle-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=100&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0">
+            <div class="text-xs min-w-0">
+              <div class="font-bold text-slate-900 truncate">دست ۲ عددی لامپ H4 اسرام</div>
+              <div class="font-mono text-[11px] text-slate-500">۳۲۰,۰۰۰ تومان</div>
+            </div>
+          </label>
+
+          <!-- Item 3: Socket & Clips -->
+          <label class="flex items-center gap-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer hover:border-orange-300 transition">
+            <input type="checkbox" id="bundleItem3" checked onchange="updateBundleTotal()" class="bundle-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=100&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0">
+            <div class="text-xs min-w-0">
+              <div class="font-bold text-slate-900 truncate">سوکت تقویتی نسوز و خارها</div>
+              <div class="font-mono text-[11px] text-slate-500">۹۵,۰۰۰ تومان</div>
+            </div>
+          </label>
+
+        </div>
+
+        <!-- Bundle Bottom Calculation Strip -->
+        <div class="p-4 bg-orange-50/70 border border-orange-200 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div>
+            <div class="text-slate-500 text-[11px]">مجموع قیمت کل پکیج با تخفیف:</div>
+            <div class="text-base font-black text-orange-950 font-mono" id="bundleTotalPrice">۱,۷۹۵,۰۰۰ <span class="text-xs font-normal font-sans">تومان</span></div>
+          </div>
+          <button onclick="addBundleToCart()" class="cursor-pointer px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-orange-500/20 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            <span>افزودن کل پکیج به سبد خرید</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Sticky Purchase Box & Animated VIN Scanner -->
+    <aside class="space-y-6">
+      
+      <div class="bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-xl space-y-5 sticky top-24">
+        
+        <!-- Price Display -->
+        <div class="space-y-1">
+          <div class="text-xs text-slate-400 font-medium">قیمت قطعی روز:</div>
+          <div class="flex items-baseline gap-2">
+            <span id="priceDisplay" class="text-3xl font-black text-slate-900 font-mono">۱,۴۵۰,۰۰۰</span>
+            <span class="text-xs text-slate-600 font-bold">تومان</span>
+          </div>
+          <div class="text-[11px] text-emerald-600 flex items-center gap-1.5 font-bold pt-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>موجودی انبار پوریا: <strong id="stockCount" class="font-bold">۴ عدد</strong> (تحویل فوری)</span>
+          </div>
+        </div>
+
+        <!-- Quantity Stepper -->
+        <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
+          <span class="text-xs font-bold text-slate-700">تعداد سفارش:</span>
+          <div class="flex items-center gap-3">
+            <button onclick="changeQty(-1)" class="w-8 h-8 rounded-xl bg-white border border-slate-300 font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-center cursor-pointer transition shadow-2xs">-</button>
+            <span id="qtyDisplay" class="font-mono font-bold text-base text-slate-900">۱</span>
+            <button onclick="changeQty(1)" class="w-8 h-8 rounded-xl bg-white border border-slate-300 font-bold text-slate-800 hover:bg-slate-100 flex items-center justify-center cursor-pointer transition shadow-2xs">+</button>
+          </div>
+        </div>
+
+        <!-- Killer Feature: Interactive Animated VIN Verification Scanner -->
+        <div class="bg-gradient-to-r from-orange-50 via-amber-50 to-orange-50 border border-orange-300 rounded-2xl p-4 space-y-2.5 shadow-2xs relative overflow-hidden">
+          <div class="flex items-center justify-between text-xs font-extrabold text-orange-950">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-orange-600 text-white flex items-center justify-center text-xs shadow-xs">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              </div>
+              <span>استعلام آنلاین شاسی (پیشگیری از خرید اشتباه):</span>
+            </div>
+            <button onclick="fillSampleVin()" class="text-[10px] text-orange-600 font-bold hover:underline cursor-pointer">
+              نمونه شاسی کوئیک
+            </button>
+          </div>
+
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            شک دارید این چراغ دقیقاً به تیپ خودرویتان می‌خورد؟ شماره شاسی کارت ماشین را بنویسید تا سیستم به صورت خودکار سازگاری سوکت و کاسه را تایید کند:
+          </p>
+
+          <div class="space-y-2">
+            <div class="flex gap-1.5">
+              <input type="text" id="vinInput" placeholder="مثال: NAS411100P1452098" maxlength="17" class="flex-1 bg-white border border-orange-300 rounded-xl px-3.5 py-2.5 text-xs font-mono placeholder:font-sans focus:ring-2 focus:ring-orange-500 outline-hidden uppercase shadow-inner">
+              <button onclick="verifyLiveVin()" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 text-white rounded-xl text-xs font-bold transition shrink-0">
+                بررسی
+              </button>
+            </div>
+
+            <!-- Live Verification Animated Status Box -->
+            <div id="vinScanStatus" class="hidden p-2.5 bg-white/90 rounded-xl border border-emerald-300 text-[11px] space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500">وضعیت انطباق فنی:</span>
+                <span id="vinResultBadge" class="font-bold text-emerald-700 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  در حال تطبیق با کاتالوگ سایپا...
+                </span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                <div id="vinProgressBar" class="bg-emerald-500 h-1.5 rounded-full w-0 transition-all duration-700"></div>
+              </div>
+              <div id="vinResultNote" class="text-[10px] text-slate-500"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Add to Cart CTA -->
+        <div class="space-y-2">
+          <button onclick="addToCart()" class="cursor-pointer w-full py-4 bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 active:scale-[0.99] text-white rounded-2xl text-xs sm:text-sm font-black transition shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2.5">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            <span>افزودن به سبد خرید و پرداخت آنلاین</span>
+          </button>
+          
+          <div class="text-[10px] text-center text-slate-400 flex items-center justify-center gap-1.5 pt-1">
+            <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            <span>رزرو تضمینی موجودی کالا به مدت ۱۵ دقیقه در درگاه بانک</span>
+          </div>
+        </div>
+
+        <!-- 4 Reassurance Badges -->
+        <div class="pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-[10px] text-slate-600 font-semibold">
+          <div class="flex items-center gap-1.5 p-2 bg-slate-50 rounded-xl">
+            <span class="text-orange-500">🛡️</span>
+            <span>۷ روز ضمانت بازگشت</span>
+          </div>
+          <div class="flex items-center gap-1.5 p-2 bg-slate-50 rounded-xl">
+            <span class="text-blue-500">⚡</span>
+            <span>ارسال ۲ ساعته تهران</span>
+          </div>
+          <div class="flex items-center gap-1.5 p-2 bg-slate-50 rounded-xl">
+            <span class="text-emerald-500">✓</span>
+            <span>ضمانت اصالت فیزیکی</span>
+          </div>
+          <div class="flex items-center gap-1.5 p-2 bg-slate-50 rounded-xl">
+            <span class="text-purple-500">📞</span>
+            <span>مشاوره رایگان فنی</span>
+          </div>
+        </div>
+
+        <!-- Support Buttons -->
+        <div class="space-y-2">
+          <a href="https://wa.me/989121111111?text=سلام+درباره+چراغ+جلو+کوئیک+سوال+داشتم" target="_blank" class="cursor-pointer w-full py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+            <span>مشاوره تخصصی در واتساپ</span>
+          </a>
+
+          <a href="tel:02188888888" class="cursor-pointer w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+            <span>تماس تلفنی با پوریا (۰۲۱-۸۸۸۸۸۸۸۸)</span>
+          </a>
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Sticky Bottom Purchase Bar (Mobile Optimized) -->
+  <div id="mobile-sticky-bar" class="sm:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 p-3 z-40 flex items-center justify-between gap-3 shadow-2xl">
+    <div>
+      <div class="text-[10px] text-slate-400">قیمت واحد روز:</div>
+      <div class="text-sm font-black text-slate-900 font-mono" id="mobilePrice">۱,۴۵۰,۰۰۰ تومان</div>
+    </div>
+    <button onclick="addToCart()" class="cursor-pointer flex-1 py-2.5 bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-md shadow-orange-500/30">
+      <span>خرید سریع</span>
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+    </button>
+  </div>
+
+  <script>
+    let currentQty = 1;
+    let basePrice = 1450000;
+
+    // 1. Variant Selector Logic
+    function selectVariant(type, price, stock) {
+      basePrice = price;
+      document.querySelectorAll('.variant-btn').forEach(b => {
+        b.className = 'cursor-pointer variant-btn p-3 rounded-2xl border border-slate-200 bg-white text-xs font-bold text-slate-700 text-center hover:border-slate-300 transition';
+      });
+
+      const activeBtn = type === 'right' ? document.getElementById('btnRight') : (type === 'left' ? document.getElementById('btnLeft') : document.getElementById('btnPair'));
+      activeBtn.className = 'cursor-pointer variant-btn p-3 rounded-2xl border-2 border-orange-500 bg-orange-50/60 text-xs font-extrabold text-orange-950 text-center transition shadow-xs';
+
+      updateTotal();
+      document.getElementById('stockCount').textContent = `${stock.toLocaleString('fa-IR')} عدد`;
+    }
+
+    function changeQty(delta) {
+      currentQty = Math.max(1, Math.min(4, currentQty + delta));
+      document.getElementById('qtyDisplay').textContent = currentQty.toLocaleString('fa-IR');
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const total = basePrice * currentQty;
+      document.getElementById('priceDisplay').textContent = total.toLocaleString('fa-IR');
+      if (document.getElementById('mobilePrice')) {
+        document.getElementById('mobilePrice').textContent = total.toLocaleString('fa-IR') + ' تومان';
+      }
+    }
+
+    // 2. 4-Angle Switcher & Labels
+    function setAngle(angleKey, src, label, btn) {
+      document.getElementById('mainProductImage').src = src;
+      document.getElementById('angleLabel').textContent = label;
+      document.querySelectorAll('.angle-btn').forEach(b => {
+        b.className = 'angle-btn h-20 rounded-2xl border border-slate-200 overflow-hidden cursor-pointer hover:border-slate-400 transition relative group';
+      });
+      btn.className = 'angle-btn h-20 rounded-2xl border-2 border-orange-500 overflow-hidden cursor-pointer transition shadow-2xs relative group';
+    }
+
+    // 3. Interactive Mouse-Following Zoom Lens
+    const zoomFrame = document.getElementById('zoomFrame');
+    const zoomImg = document.getElementById('mainProductImage');
+
+    zoomFrame.addEventListener('mousemove', e => {
+      const rect = zoomFrame.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      zoomImg.style.transformOrigin = `${x}% ${y}%`;
+      zoomImg.style.transform = 'scale(2.2)';
+    });
+
+    zoomFrame.addEventListener('mouseleave', () => {
+      zoomImg.style.transformOrigin = 'center center';
+      zoomImg.style.transform = 'scale(1)';
+    });
+
+    // 4. Tabs Switcher
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn pb-3 text-slate-400 hover:text-slate-700 cursor-pointer';
+      });
+      btn.className = 'tab-btn pb-3 text-orange-600 border-b-2 border-orange-600 cursor-pointer font-bold';
+
+      document.getElementById('tabContentSpecs').classList.toggle('hidden', tab !== 'specs');
+      document.getElementById('tabContentModels').classList.toggle('hidden', tab !== 'models');
+      document.getElementById('tabContentShipping').classList.toggle('hidden', tab !== 'shipping');
+    }
+
+    // 5. Frequently Bought Together Calculation
+    function updateBundleTotal() {
+      let total = 1450000;
+      if (document.getElementById('bundleItem2').checked) total += 320000;
+      if (document.getElementById('bundleItem3').checked) total += 95000;
+      // 70k discount if all 3
+      if (document.getElementById('bundleItem2').checked && document.getElementById('bundleItem3').checked) {
+        total -= 70000;
+      }
+      document.getElementById('bundleTotalPrice').innerHTML = `${total.toLocaleString('fa-IR')} <span class="text-xs font-normal font-sans">تومان</span>`;
+    }
+
+    function addBundleToCart() {
+      alert('پکیج کامل (چراغ جلو کوئیک + لامپ‌های H4 اسرام + خار و سوکت تقویتی) با تخفیف ویژه به سبد خرید اضافه شد!\nجهت مشاهده و پیگیری سفارش به پنل ادمین منتقل می‌شوید.');
+      window.location.href = '../admin/orders.html';
+    }
+
+    // 6. Live Animated VIN Verification Checker
+    function fillSampleVin() {
+      document.getElementById('vinInput').value = 'NAS411100P1452098';
+      verifyLiveVin();
+    }
+
+    function verifyLiveVin() {
+      const vin = document.getElementById('vinInput').value.trim().toUpperCase();
+      if (!vin) {
+        alert('لطفاً شماره شاسی خودرو را وارد کنید یا روی "نمونه شاسی کوئیک" کلیک کنید.');
+        return;
+      }
+
+      const statusBox = document.getElementById('vinScanStatus');
+      const progressBar = document.getElementById('vinProgressBar');
+      const badge = document.getElementById('vinResultBadge');
+      const note = document.getElementById('vinResultNote');
+
+      // Format gate: Iranian VINs are 17 chars starting with NAAP/NAAB (ایران‌خودرو) or NAS (سایپا)
+      const isValidFormat = vin.length === 17 && /^(NAAP|NAAB|NAS)/.test(vin);
+
+      statusBox.classList.remove('hidden');
+      progressBar.style.width = '20%';
+      badge.textContent = 'در حال بررسی دیتابیس کاتالوگ سایپا...';
+      badge.className = 'font-bold text-amber-600 flex items-center gap-1';
+      note.textContent = 'بررسی کد خط تولید و سیم‌کشی...';
+
+      setTimeout(() => {
+        progressBar.style.width = '70%';
+        badge.textContent = 'تطابق نوع سوکت و موتور تنظیم...';
+      }, 350);
+
+      setTimeout(() => {
+        progressBar.style.width = '100%';
+        if (!isValidFormat) {
+          // قرمز: فرمت شاسی نامعتبر
+          statusBox.className = 'p-2.5 bg-white/90 rounded-xl border border-rose-300 text-[11px] space-y-1.5';
+          progressBar.className = 'bg-rose-500 h-1.5 rounded-full transition-all duration-700';
+          badge.innerHTML = '✕ فرمت شماره شاسی نامعتبر است';
+          badge.className = 'font-bold text-rose-700 flex items-center gap-1';
+          note.textContent = 'شماره شاسی باید ۱۷ کاراکتر و با پیشوند NAAP یا NAAB (ایران‌خودرو) یا NAS (سایپا) باشد.';
+        } else if (vin.startsWith('NAAP') || vin.startsWith('NAAB')) {
+          // نارنجی: شاسی معتبر ایران‌خودرو، اما این قطعه مخصوص سایپا (کوئیک) است
+          statusBox.className = 'p-2.5 bg-white/90 rounded-xl border border-amber-300 text-[11px] space-y-1.5';
+          progressBar.className = 'bg-amber-500 h-1.5 rounded-full transition-all duration-700';
+          badge.innerHTML = '⚠ عدم تطابق پلتفرم';
+          badge.className = 'font-bold text-amber-700 flex items-center gap-1';
+          note.innerHTML = 'این شاسی متعلق به خودروی <strong>ایران‌خودرو</strong> است؛ این قطعه مخصوص <strong>کوئیک (سایپا)</strong> است — لطفاً جهت یافتن قطعه سازگار با کارشناس تماس بگیرید.';
+        } else {
+          // سبز: شاسی سایپا با این قطعه ۱۰۰٪ سازگار
+          statusBox.className = 'p-2.5 bg-white/90 rounded-xl border border-emerald-300 text-[11px] space-y-1.5';
+          progressBar.className = 'bg-emerald-500 h-1.5 rounded-full transition-all duration-700';
+          badge.innerHTML = '✓ ۱۰۰٪ سازگار و تایید شد';
+          badge.className = 'font-bold text-emerald-700 flex items-center gap-1';
+          note.innerHTML = `شماره شاسی <strong>${vin.substring(0, 10)}...</strong> تایید شد؛ چراغ بدون نیاز به تغییر سیم‌کشی سوکت‌به‌سوکت نصب می‌شود.`;
+        }
+      }, 750);
+    }
+
+    // 7. Add to Cart Handler
+    function addToCart() {
+      const vin = document.getElementById('vinInput').value.trim();
+      let msg = `کالا (${currentQty} عدد) به سبد خرید اضافه شد!`;
+      if (vin) {
+        msg += `\nشماره شاسی "${vin}" جهت استعلام انباردار ثبت گردید.`;
+      }
+      alert(msg + '\nدر ادامه به صفحه مدیریت سفارشات ادمین منتقل می‌شوید تا نحوه تایید آن توسط پوریا را تست کنید.');
+      window.location.href = '../admin/orders.html';
+    }
+  </script>
+</body>
+</html>

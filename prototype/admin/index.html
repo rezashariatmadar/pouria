@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت | ویرایشگر فوق‌سریع قیمت و انبار</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+    .dirty-cell {
+      background-color: #fef3c7 !important;
+      border-color: #f59e0b !important;
+      color: #92400e !important;
+    }
+    .selected-row {
+      background-color: #f8fafc !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex selection:bg-amber-500 selection:text-white">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 hidden md:flex min-h-screen sticky top-0 h-screen border-l border-slate-800">
+    <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800 bg-slate-950/40">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-amber-500/20">
+        یدک
+      </div>
+      <div>
+        <div class="font-extrabold text-white text-sm leading-tight">یدک‌پرو (پوریا)</div>
+        <div class="text-[11px] text-slate-400 font-medium">پنل مدیریت انبار و قیمت</div>
+      </div>
+    </div>
+
+    <nav class="p-4 space-y-1.5 flex-1">
+      <div class="text-[10px] font-bold text-slate-500 px-3 py-1 uppercase tracking-wider">مدیریت محصولات</div>
+      
+      <a href="index.html" class="cursor-pointer flex items-center justify-between px-3 py-2.5 rounded-xl bg-amber-500/10 text-amber-400 font-bold border border-amber-500/20">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          <span class="text-xs">ویرایش سریع قیمت و انبار</span>
+        </div>
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+      </a>
+
+      <a href="product-add.html" class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition text-xs font-medium">
+        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>تعریف محصول جدید</span>
+      </a>
+
+      <div class="text-[10px] font-bold text-slate-500 px-3 pt-4 pb-1 uppercase tracking-wider">سفارش‌ها و فروش</div>
+
+      <a href="orders.html" class="cursor-pointer flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition text-xs font-medium">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          <span>سفارشات (بررسی شاسی)</span>
+        </div>
+        <span class="px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 rounded-full font-bold">۲ جدید</span>
+      </a>
+
+      <div class="text-[10px] font-bold text-slate-500 px-3 pt-4 pb-1 uppercase tracking-wider">نمای خریدار</div>
+      <a href="../store/index.html" target="_blank" class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl text-emerald-400 hover:bg-emerald-500/10 transition border border-emerald-500/20 text-xs font-semibold">
+        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        <span>مشاهده فروشگاه آنلاین</span>
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-slate-800 bg-slate-950/40">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center font-bold text-white text-xs">پ</div>
+        <div class="overflow-hidden">
+          <div class="text-xs font-bold text-white truncate">پوریا (مدیر فروشگاه)</div>
+          <div class="text-[10px] text-emerald-400 flex items-center gap-1.5 mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> آنلاین
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+    
+    <!-- Top Header Bar -->
+    <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+      <div class="flex items-center gap-3">
+        <h1 class="text-base sm:text-lg font-bold text-slate-900">جدول ویرایش سریع قیمت و موجودی</h1>
+        <span class="bg-amber-100 text-amber-800 text-[11px] px-2.5 py-0.5 rounded-full font-semibold hidden sm:inline">حالت Spreadsheet UX</span>
+      </div>
+
+      <!-- Action Buttons & Change Tracker -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div id="changeCountBadge" class="hidden text-xs bg-amber-500/10 text-amber-800 border border-amber-500/30 px-3 py-1.5 rounded-lg font-bold transition">
+          <span id="changeCount" class="font-mono">۰</span> مورد ویرایش شده
+        </div>
+
+        <button onclick="applyBulkPercentage()" class="cursor-pointer px-3 py-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition border border-slate-300 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" /></svg>
+          <span class="hidden sm:inline">افزایش درصدی گروهی</span>
+          <span class="sm:hidden">درصد %</span>
+        </button>
+
+        <button id="saveBtn" onclick="saveAllChanges()" class="cursor-pointer px-4 sm:px-5 py-2 text-xs font-bold text-white bg-amber-500 hover:bg-amber-600 active:bg-amber-700 rounded-xl transition shadow-md shadow-amber-500/20 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+          <span>ذخیره تغییرات</span>
+          <span class="text-[10px] bg-amber-600/60 px-1.5 py-0.5 rounded text-amber-100 font-mono hidden md:inline">Ctrl+S</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sub-bar: Instructions & Controls -->
+    <section class="p-4 sm:p-6 pb-2 space-y-4">
+
+      <!-- Tips Banner for Pou -->
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-2xl p-4 flex items-start justify-between shadow-2xs">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <div>
+            <div class="font-bold text-slate-900 text-xs sm:text-sm">راهنمای کاربری پوریا:</div>
+            <div class="text-[11px] sm:text-xs text-slate-600 mt-1 leading-relaxed">
+              • برای ویرایش، روی کادر کلیک کن یا با کلیدهای جهت‌نما <strong>(↑ ↓ ← →)</strong> و <strong>Enter</strong> بین خانه‌ها جابجا شو. کادرهای تغییر یافته طلایی می‌شوند.<br>
+              • اگر قطعه‌ای نوسان لحظه‌ای دارد، کلید <strong>«تماس بگیرید»</strong> را فعال کن تا در سایت دکمه استعلام واتساپ فعال شود.<br>
+              • می‌توانید با چک‌باکس چند قطعه را همزمان انتخاب کرده و با یک کلیک درصد اضافه کنید.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-2xs">
+        <div class="flex flex-wrap items-center gap-2.5 flex-1 min-w-[280px]">
+          <!-- Instant Search -->
+          <div class="relative flex-1 min-w-[200px]">
+            <input type="text" id="searchInput" oninput="filterTable()" placeholder="جستجو بر اساس نام قطعه، کد ایساکو یا خودرو..." class="w-full bg-slate-50 border border-slate-300 rounded-xl pr-9 pl-4 py-2 text-xs focus:ring-2 focus:ring-amber-500 focus:bg-white outline-hidden transition">
+            <svg class="w-4 h-4 text-slate-400 absolute right-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </div>
+
+          <!-- Brand Filter -->
+          <select id="brandFilter" onchange="filterTable()" class="cursor-pointer bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold focus:ring-2 focus:ring-amber-500 text-slate-700 outline-hidden">
+            <option value="">همه برندها</option>
+            <option value="ایساکو">ایساکو (ISACO)</option>
+            <option value="کروز">کروز (Crouse)</option>
+            <option value="عظام">عظام (Ezam)</option>
+            <option value="والئو">والئو (Valeo)</option>
+          </select>
+
+          <!-- Stock Filter -->
+          <select id="stockFilter" onchange="filterTable()" class="cursor-pointer bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-semibold focus:ring-2 focus:ring-amber-500 text-slate-700 outline-hidden">
+            <option value="">همه موجودی‌ها</option>
+            <option value="low">فقط هشدار کمبود انبار (زیر ۳ عدد)</option>
+            <option value="out">فقط ناموجودها</option>
+          </select>
+        </div>
+
+        <div class="text-xs text-slate-500 font-medium">
+          نمایش <span id="totalRowsCount" class="font-bold text-slate-900 font-mono">۶</span> قلم قطعه
+        </div>
+      </div>
+
+      <!-- Floating Bulk Action Bar (Appears when rows selected) -->
+      <div id="bulkActionBar" class="hidden bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex flex-wrap items-center justify-between gap-3 animate-fade-in">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span>تعداد <strong id="selectedCount" class="font-mono text-amber-400">۰</strong> قطعه انتخاب شده</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="bulkChangePercentage()" class="cursor-pointer px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition">
+            اعمال درصد روی انتخاب‌شده‌ها
+          </button>
+          <button onclick="bulkSetCallForPrice(true)" class="cursor-pointer px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs transition border border-slate-700">
+            تبدیل به «تماس بگیرید»
+          </button>
+          <button onclick="clearRowSelection()" class="cursor-pointer text-xs text-slate-400 hover:text-white px-2">
+            لغو انتخاب
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- The Fast Table -->
+    <div class="p-4 sm:p-6 pt-2 flex-1 overflow-auto">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+        <table class="w-full text-right border-collapse text-xs min-w-[900px]">
+          <thead>
+            <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 font-bold">
+              <th class="py-3 px-3 w-10 text-center">
+                <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)" class="cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </th>
+              <th class="py-3 px-3 w-12 text-center">تصویر</th>
+              <th class="py-3 px-4 min-w-[220px]">نام قطعه و برند</th>
+              <th class="py-3 px-4 w-32">کد فنی / ایساکو</th>
+              <th class="py-3 px-4 w-32">خودروهای سازگار</th>
+              <th class="py-3 px-4 w-28 text-center bg-amber-50/50 text-amber-900 border-x border-amber-200/60">موجودی انبار</th>
+              <th class="py-3 px-4 w-44 text-center bg-amber-50/50 text-amber-900 border-l border-amber-200/60">قیمت فروش (تومان)</th>
+              <th class="py-3 px-4 w-28 text-center">تماس بگیرید</th>
+              <th class="py-3 px-4 w-24 text-center">وضعیت</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody" class="divide-y divide-slate-100 font-medium">
+
+            <!-- Row 1 -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="1" data-brand="ایساکو" data-stock="12" data-name="لنت ترمز جلو پژو 206 تیپ 5" data-code="16401002" data-car="206">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">لنت</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">لنت ترمز جلو پژو 206 تیپ 5 (ایساکو اصل)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-blue-700 font-bold">ایساکو</span> | کد پارت‌نامبر استاندارد</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">16401002</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">پژو 206، 207، رانا</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="12" onchange="markDirty(this, 1, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="890,000" onchange="formatPriceInput(this); markDirty(this, 1, 'price')" class="price-input w-36 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onchange="toggleCallForPrice(this, 1)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-emerald-100 text-emerald-800 font-bold">موجود</span>
+              </td>
+            </tr>
+
+            <!-- Row 2 (Low stock) -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="2" data-brand="کروز" data-stock="2" data-name="چراغ جلو کوئیک سمت چپ کروز" data-code="CR-QK-04" data-car="کوئیک">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">چراغ</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">چراغ جلو کوئیک - سمت چپ (کروز اصل)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-orange-700 font-bold">کروز</span> | سمت راننده (چپ)</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">CR-QK-04</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">کوئیک و کوئیک S</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="2" onchange="markDirty(this, 2, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-red-50 text-red-700 border border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="1,450,000" onchange="formatPriceInput(this); markDirty(this, 2, 'price')" class="price-input w-36 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onchange="toggleCallForPrice(this, 2)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-red-100 text-red-800 font-bold">کمبود انبار</span>
+              </td>
+            </tr>
+
+            <!-- Row 3 (Call for Price Active) -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="3" data-brand="ایساکو" data-stock="4" data-name="واتر پمپ سمند موتور ملی EF7" data-code="WP-EF7-88" data-car="سمند">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">واترپمپ</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">واتر پمپ سمند موتور ملی EF7 (ایساکو)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-blue-700 font-bold">ایساکو</span> | خنک‌کننده موتور</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">WP-EF7-88</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">سمند EF7، دنا</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="4" onchange="markDirty(this, 3, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="تماس بگیرید" disabled class="price-input w-36 text-center font-bold py-1.5 px-2 bg-slate-100 text-slate-400 border border-slate-200 rounded-lg outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked onchange="toggleCallForPrice(this, 3)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-amber-100 text-amber-800 font-bold">استعلام ساعتی</span>
+              </td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="4" data-brand="والئو" data-stock="3" data-name="کیت کلاچ دیسک و صفحه پژو پارس TU5 والئو" data-code="826360" data-car="پارس">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">کلاچ</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">کیت کلاچ (دیسک و صفحه) پژو پارس TU5 والئو سبز</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-emerald-700 font-bold">والئو اصل فرانسه</span> | با هولوگرام</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">826360-VAL</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">پارس TU5، ۲۰۶ تیپ ۵</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="3" onchange="markDirty(this, 4, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="4,850,000" onchange="formatPriceInput(this); markDirty(this, 4, 'price')" class="price-input w-36 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onchange="toggleCallForPrice(this, 4)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-emerald-100 text-emerald-800 font-bold">موجود</span>
+              </td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="5" data-brand="عظام" data-stock="1" data-name="کمک فنر جلو پراید عظام" data-code="EZ-PR-110" data-car="پراید">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">کمک‌فنر</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">کمک فنر جلو پراید (عظام)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-slate-700 font-bold">عظام</span> | گارانتی تعویض ۶ ماهه</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">EZ-PR-110</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">پراید 111, 131, 132</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="1" onchange="markDirty(this, 5, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-red-50 text-red-700 border border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="1,150,000" onchange="formatPriceInput(this); markDirty(this, 5, 'price')" class="price-input w-36 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onchange="toggleCallForPrice(this, 5)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-red-100 text-red-800 font-bold">کمبود انبار</span>
+              </td>
+            </tr>
+
+            <!-- Row 6 -->
+            <tr class="hover:bg-slate-50/80 transition" data-id="6" data-brand="کروز" data-stock="6" data-name="سنسور اکسیژن 206 تیپ 2 کروز" data-code="OX-CR-206" data-car="206">
+              <td class="py-3 px-3 text-center">
+                <input type="checkbox" onchange="onRowSelectChange()" class="row-checkbox cursor-pointer rounded text-amber-500 focus:ring-amber-400">
+              </td>
+              <td class="py-3 px-3 text-center">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 text-[10px] font-bold">سنسور</div>
+              </td>
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 text-xs">سنسور اکسیژن پژو 206 تیپ 2 (سیم کوتاه کروز اصل)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">برند: <span class="text-orange-700 font-bold">کروز شرکتی</span> | قطعه برقی</div>
+              </td>
+              <td class="py-3 px-4 font-mono text-slate-700 text-xs">OX-CR-206</td>
+              <td class="py-3 px-4">
+                <span class="inline-block bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md text-[11px]">پژو 206 تیپ 2</span>
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-x border-amber-100/60 text-center">
+                <input type="number" value="6" onchange="markDirty(this, 6, 'stock')" class="w-20 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-3 bg-amber-50/20 border-l border-amber-100/60 text-center">
+                <input type="text" value="1,750,000" onchange="formatPriceInput(this); markDirty(this, 6, 'price')" class="price-input w-36 text-center font-bold font-mono py-1.5 px-2 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-hidden transition">
+              </td>
+              <td class="py-3 px-4 text-center">
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" onchange="toggleCallForPrice(this, 6)" class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                </label>
+              </td>
+              <td class="py-3 px-4 text-center">
+                <span class="status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-emerald-100 text-emerald-800 font-bold">موجود</span>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 left-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300">
+    <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold shrink-0">✓</div>
+    <div id="toastMessage" class="text-xs font-semibold">تغییرات با موفقیت ذخیره شد.</div>
+  </div>
+
+  <script>
+    let dirtyChanges = new Set();
+
+    function markDirty(input, rowId, field) {
+      input.classList.add('dirty-cell');
+      dirtyChanges.add(`${rowId}-${field}`);
+      // Keep data-stock in sync so the stock filter reflects live edits
+      if (field === 'stock') {
+        const row = input.closest('tr');
+        if (row) row.dataset.stock = input.value || '0';
+      }
+      updateBadge();
+    }
+
+    function formatPriceInput(input) {
+      let raw = input.value.replace(/[^0-9]/g, '');
+      if (raw) {
+        input.value = parseInt(raw, 10).toLocaleString('en-US');
+      }
+    }
+
+    function toggleCallForPrice(checkbox, rowId) {
+      const row = document.querySelector(`tr[data-id="${rowId}"]`);
+      const priceInput = row.querySelector('.price-input');
+      const statusBadge = row.querySelector('.status-badge');
+
+      if (checkbox.checked) {
+        priceInput.dataset.prev = priceInput.value;
+        priceInput.value = 'تماس بگیرید';
+        priceInput.disabled = true;
+        priceInput.classList.add('bg-slate-100', 'text-slate-400');
+        priceInput.classList.remove('bg-white', 'text-slate-800');
+        statusBadge.className = 'status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-amber-100 text-amber-800 font-bold';
+        statusBadge.textContent = 'استعلام ساعتی';
+      } else {
+        priceInput.value = priceInput.dataset.prev || '1,000,000';
+        priceInput.disabled = false;
+        priceInput.classList.remove('bg-slate-100', 'text-slate-400');
+        priceInput.classList.add('bg-white', 'text-slate-800');
+        statusBadge.className = 'status-badge px-2.5 py-0.5 rounded-full text-[11px] bg-emerald-100 text-emerald-800 font-bold';
+        statusBadge.textContent = 'موجود';
+      }
+      dirtyChanges.add(`${rowId}-call-toggle`);
+      updateBadge();
+    }
+
+    function updateBadge() {
+      const badge = document.getElementById('changeCountBadge');
+      const count = document.getElementById('changeCount');
+      if (dirtyChanges.size > 0) {
+        badge.classList.remove('hidden');
+        count.textContent = dirtyChanges.size.toLocaleString('fa-IR');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function saveAllChanges() {
+      document.querySelectorAll('.dirty-cell').forEach(el => el.classList.remove('dirty-cell'));
+      const count = dirtyChanges.size;
+      dirtyChanges.clear();
+      updateBadge();
+      showToast(count > 0 ? `تعداد ${count} تغییر با موفقیت ذخیره شد.` : 'هیچ تغییری برای ذخیره وجود ندارد.');
+    }
+
+    function applyBulkPercentage() {
+      const percent = prompt('درصد تغییر روی تمام ردیف‌ها را وارد کنید (مثلاً 5 برای 5% افزایش یا -5 برای کاهش):', '5');
+      if (percent !== null && !isNaN(percent) && percent.trim() !== '') {
+        const factor = 1 + (parseFloat(percent) / 100);
+        document.querySelectorAll('.price-input:not([disabled])').forEach((input, index) => {
+          let num = parseInt(input.value.replace(/,/g, ''), 10);
+          if (!isNaN(num)) {
+            let newPrice = Math.round((num * factor) / 1000) * 1000;
+            input.value = newPrice.toLocaleString('en-US');
+            input.classList.add('dirty-cell');
+            dirtyChanges.add(`bulk-${index}`);
+          }
+        });
+        updateBadge();
+        showToast(`افزایش ${percent}٪ با موفقیت روی قیمت‌ها محاسبه شد.`);
+      }
+    }
+
+    // Row selection and Bulk Actions Bar
+    function onRowSelectChange() {
+      const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
+      const count = checkedBoxes.length;
+      const bar = document.getElementById('bulkActionBar');
+      const countSpan = document.getElementById('selectedCount');
+      
+      countSpan.textContent = count.toLocaleString('fa-IR');
+      if (count > 0) {
+        bar.classList.remove('hidden');
+      } else {
+        bar.classList.add('hidden');
+      }
+
+      // Highlight selected rows
+      document.querySelectorAll('.row-checkbox').forEach(cb => {
+        const tr = cb.closest('tr');
+        if (cb.checked) {
+          tr.classList.add('selected-row');
+        } else {
+          tr.classList.remove('selected-row');
+        }
+      });
+    }
+
+    function toggleSelectAll(masterCb) {
+      document.querySelectorAll('.row-checkbox').forEach(cb => {
+        cb.checked = masterCb.checked;
+      });
+      onRowSelectChange();
+    }
+
+    function clearRowSelection() {
+      document.getElementById('selectAllCheckbox').checked = false;
+      toggleSelectAll({ checked: false });
+    }
+
+    function bulkChangePercentage() {
+      const percent = prompt('درصد افزایش برای ردیف‌های انتخاب شده:', '8');
+      if (percent !== null && !isNaN(percent) && percent.trim() !== '') {
+        const factor = 1 + (parseFloat(percent) / 100);
+        document.querySelectorAll('.row-checkbox:checked').forEach(cb => {
+          const row = cb.closest('tr');
+          const input = row.querySelector('.price-input:not([disabled])');
+          if (input) {
+            let num = parseInt(input.value.replace(/,/g, ''), 10);
+            if (!isNaN(num)) {
+              let newPrice = Math.round((num * factor) / 1000) * 1000;
+              input.value = newPrice.toLocaleString('en-US');
+              input.classList.add('dirty-cell');
+              dirtyChanges.add(`sel-${row.dataset.id}`);
+            }
+          }
+        });
+        updateBadge();
+        showToast(`افزایش ${percent}٪ روی ردیف‌های انتخابی اعمال شد.`);
+      }
+    }
+
+    function bulkSetCallForPrice(val) {
+      document.querySelectorAll('.row-checkbox:checked').forEach(cb => {
+        const row = cb.closest('tr');
+        const toggle = row.querySelector('input[type="checkbox"]:not(.row-checkbox)');
+        if (toggle && toggle.checked !== val) {
+          toggle.checked = val;
+          toggleCallForPrice(toggle, row.dataset.id);
+        }
+      });
+      showToast('وضعیت اقلام انتخابی به «تماس بگیرید» تغییر کرد.');
+    }
+
+    function filterTable() {
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const brand = document.getElementById('brandFilter').value;
+      const stock = document.getElementById('stockFilter').value;
+      const rows = document.querySelectorAll('#productTableBody tr');
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const rowBrand = row.dataset.brand || '';
+        const rowName = (row.dataset.name + ' ' + row.dataset.code + ' ' + row.dataset.car).toLowerCase();
+        const rowStock = parseInt(row.dataset.stock, 10);
+
+        let matchSearch = !search || rowName.includes(search);
+        let matchBrand = !brand || rowBrand === brand;
+        let matchStock = true;
+
+        if (stock === 'low') matchStock = rowStock < 3 && rowStock > 0;
+        if (stock === 'out') matchStock = rowStock === 0;
+
+        if (matchSearch && matchBrand && matchStock) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      document.getElementById('totalRowsCount').textContent = visibleCount.toLocaleString('fa-IR');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3500);
+    }
+
+    // Spreadsheet-style keyboard navigation: ↑/↓ jump between rows in the same
+    // column, Enter goes one row down, and — RTL-aware — ← moves to the next
+    // editable cell of the row (like Tab) while → moves to the previous one.
+    document.getElementById('productTableBody').addEventListener('keydown', (e) => {
+      if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'].includes(e.key)) return;
+      if (e.target.tagName !== 'INPUT' || e.target.type === 'checkbox') return;
+
+      const src = e.target;
+      const row = src.closest('tr');
+      const rows = Array.from(document.querySelectorAll('#productTableBody tr')).filter(r => r.style.display !== 'none');
+      const rowIndex = rows.indexOf(row);
+
+      // Editable cells of a row in visual (RTL) order: موجودی، then قیمت
+      const cellsOf = (r) => Array.from(r.querySelectorAll('input[type="number"], .price-input')).filter(i => !i.disabled);
+      const cellIndex = cellsOf(row).indexOf(src);
+      const focusCell = (r, idx) => {
+        const cells = cellsOf(r);
+        if (cells.length) cells[Math.min(Math.max(idx, 0), cells.length - 1)].focus();
+      };
+
+      if (e.key === 'ArrowDown' || e.key === 'Enter') {
+        e.preventDefault();
+        if (rowIndex > -1 && rowIndex < rows.length - 1) focusCell(rows[rowIndex + 1], cellIndex);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (rowIndex > 0) focusCell(rows[rowIndex - 1], cellIndex);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        focusCell(row, cellIndex + 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        focusCell(row, cellIndex - 1);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveAllChanges();
+      }
+    });
+  </script>
+</body>
+</html>

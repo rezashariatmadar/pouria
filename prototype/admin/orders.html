@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل مدیریت | مدیریت سفارشات و تایید شماره شاسی (VIN)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 hidden md:flex min-h-screen sticky top-0 h-screen border-l border-slate-800">
+    <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800 bg-slate-950/40">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold shadow-lg shadow-amber-500/20">یدک</div>
+      <div>
+        <div class="font-bold text-white text-base leading-tight">یدک‌پرو (پوریا)</div>
+        <div class="text-[11px] text-slate-400">پنل مدیریت انبار و قیمت</div>
+      </div>
+    </div>
+
+    <nav class="p-4 space-y-1.5 flex-1">
+      <div class="text-[11px] font-semibold text-slate-400 px-3 py-1 uppercase tracking-wider">مدیریت محصولات</div>
+      <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+        <span>ویرایش سریع قیمت و موجودی</span>
+      </a>
+
+      <a href="product-add.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>تعریف محصول جدید</span>
+      </a>
+
+      <div class="text-[11px] font-semibold text-slate-400 px-3 pt-4 pb-1 uppercase tracking-wider">سفارش‌ها و فروش</div>
+      <a href="orders.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-amber-500/10 text-amber-400 font-medium border border-amber-500/20">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          <span>لیست سفارشات (بررسی شاسی)</span>
+        </div>
+        <span class="px-2 py-0.5 text-xs bg-red-500 text-white rounded-full font-bold">۲ جدید</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+    <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+      <div class="flex items-center gap-3">
+        <h1 class="text-lg font-bold text-slate-900">سفارشات جدید و استعلام شماره شاسی (VIN)</h1>
+      </div>
+      <div class="text-xs text-slate-500">
+        امروز: ۱۵ شهریور ۱۴۰۵ | ۲ سفارش آماده ارسال
+      </div>
+    </header>
+
+    <div class="p-6 max-w-6xl mx-auto w-full space-y-6">
+
+      <!-- Killer Feature Explainer Banner -->
+      <div class="bg-gradient-to-r from-emerald-500 to-teal-700 rounded-2xl p-5 text-white shadow-md flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <div>
+            <div class="font-bold text-base">برگ برنده پوریا: سیستم پیشگیری از ارسال قطعه اشتباه (VIN Checker)</div>
+            <div class="text-xs text-emerald-100 mt-1">مشتریان شماره شاسی خودرو را ثبت کرده‌اند. قبل از بسته‌بندی، سازگاری قطعه را تایید کنید تا مرجوعی به صفر برسد!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 flex items-center gap-3.5 shadow-xs">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">سفارشات جدید</div>
+            <div class="text-lg font-black text-slate-900 leading-tight">۲ <span class="text-[11px] font-normal text-slate-400">سفارش امروز</span></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border-2 border-amber-300 p-4 flex items-center gap-3.5 shadow-xs">
+          <div class="w-11 h-11 rounded-xl bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">در انتظار تایید شاسی</div>
+            <div class="text-lg font-black text-amber-700 leading-tight">۱ <span class="text-[11px] font-normal text-slate-400">قبل از بسته‌بندی</span></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 flex items-center gap-3.5 shadow-xs">
+          <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 font-medium">در حال بسته‌بندی</div>
+            <div class="text-lg font-black text-slate-900 leading-tight">۱ <span class="text-[11px] font-normal text-slate-400">آماده ارسال امروز</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders List -->
+      <div class="space-y-4">
+
+        <!-- Order Card 1 (Needs VIN Check) -->
+        <div class="bg-white rounded-2xl border-2 border-amber-300 shadow-sm overflow-hidden">
+          <div class="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-amber-50/30">
+            <div class="flex items-center gap-3">
+              <span class="font-mono font-bold text-sm bg-slate-900 text-white px-3 py-1 rounded-lg">#YK-10492</span>
+              <span class="text-xs font-semibold text-slate-700">خریدار: محمدرضا کمالی (۰۹۱۲۱۱۱۴۴۵۵)</span>
+              <span class="text-xs text-slate-400">| ۳۵ دقیقه پیش</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-100 text-amber-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                نیاز به تایید شماره شاسی
+              </span>
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-blue-100 text-blue-800">
+                ارسال با تیپاکس (پس‌کرایه)
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Items Purchased -->
+            <div class="md:col-span-2 space-y-3">
+              <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">اقلام سفارش:</div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-lg bg-slate-200 flex items-center justify-center font-bold text-xs text-slate-500">لنت</div>
+                  <div>
+                    <div class="font-bold text-xs text-slate-900">کیت کلاچ (دیسک و صفحه) پژو پارس TU5 والئو سبز اصل</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">کد پارت‌نامبر: 826360-VAL | تعداد: ۱ عدد</div>
+                  </div>
+                </div>
+                <div class="text-left font-mono font-bold text-sm text-slate-900">۴,۸۵۰,۰۰۰ تومان</div>
+              </div>
+
+              <!-- Customer Address -->
+              <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <strong>آدرس تحویل:</strong> اصفهان، خیابان بزرگمهر، کوچه بهار، پلاک ۲۴ - کد پستی: ۸۱۵۴۷۱۱۲۳۴
+              </div>
+            </div>
+
+            <!-- VIN Verification Box -->
+            <div class="bg-amber-50/60 border border-amber-200 rounded-xl p-4 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs font-bold text-amber-900">
+                  <svg class="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>
+                  مشخصات شاسی ثبت‌شده توسط خریدار:
+                </div>
+                <div class="mt-2 p-2 bg-white rounded-lg border border-amber-300 font-mono text-xs font-bold text-slate-800 text-center select-all tracking-wider">
+                  NAAB01EC5MJ884102
+                </div>
+                <p class="text-[11px] text-slate-600 mt-2 leading-relaxed">
+                  <strong>یادداشت خریدار:</strong> «ماشینم پارس TU5 مدل ۹۸ هست، لطفاً چک کنید حتماً دیسک صفحه والئو به فلایویلش بخوره ممنون.»
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-amber-200 space-y-2">
+                <button onclick="approveVIN(this)" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                  تایید تطابق قطعه (آماده ارسال)
+                </button>
+                <button onclick="alert('شماره تماس خریدار: 09121114455')" class="w-full py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition">
+                  تماس تلفنی با خریدار
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Order Card 2 (Ready to Pack) -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden opacity-90">
+          <div class="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <span class="font-mono font-bold text-sm bg-slate-900 text-white px-3 py-1 rounded-lg">#YK-10491</span>
+              <span class="text-xs font-semibold text-slate-700">خریدار: سعید راد (۰۹۳۵۲۲۰۳۰۴۰)</span>
+              <span class="text-xs text-slate-400">| ۱ ساعت پیش</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 text-xs font-bold rounded-lg bg-emerald-100 text-emerald-800">
+                تایید شده / در حال بسته‌بندی
+              </span>
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-orange-100 text-orange-800">
+                پیک موتوری فوری (تهران)
+              </span>
+            </div>
+          </div>
+
+          <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 space-y-3">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-lg bg-slate-200 flex items-center justify-center font-bold text-xs text-slate-500">چراغ</div>
+                  <div>
+                    <div class="font-bold text-xs text-slate-900">چراغ جلو کوئیک - سمت چپ (کروز اصل)</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">کد: CR-QK-04 | سمت راننده | تعداد: ۱ عدد</div>
+                  </div>
+                </div>
+                <div class="text-left font-mono font-bold text-sm text-slate-900">۱,۴۵۰,۰۰۰ تومان</div>
+              </div>
+              <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <strong>آدرس تحویل فوری:</strong> تهران، سعادت‌آباد، خیابان علامه شمالی، پلاک ۱۲
+              </div>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
+              <div>
+                <div class="text-xs font-bold text-emerald-800 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  شاسی تایید شده است (کوئیک R مدل ۱۴۰۱)
+                </div>
+                <div class="text-xs text-slate-500 mt-2">هزینه پیک موتوری اسنپ هنگام تحویل تسویه می‌شود.</div>
+              </div>
+              <button onclick="alert('چاپ حواله انبار و فاکتور فروش برای پیک موتوری صادر شد.')" class="w-full py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition">
+                چاپ فاکتور و برچسب انبار
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function approveVIN(button) {
+      button.className = "w-full py-2 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold cursor-default flex items-center justify-center gap-2";
+      button.innerHTML = "✓ تطابق شماره شاسی تایید شد";
+      button.disabled = true;
+      alert('تطابق شماره شاسی تایید شد. وضعیت سفارش به «آماده بسته‌بندی در انبار» تغییر یافت.');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Dev database only — run Django and Next.js natively for the fast loop:
+#   docker compose -f docker-compose.dev.yml up -d
+#   cd backend  && source .venv/bin/activate && ./manage.py runserver
+#   cd frontend && npm run dev
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: yadak
+      POSTGRES_PASSWORD: yadak
+      POSTGRES_DB: yadak
+    ports:
+      - "5432:5432"
+    volumes:
+      - yadak_dev_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yadak"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  yadak_dev_pgdata:

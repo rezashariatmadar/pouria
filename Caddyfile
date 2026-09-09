@@ -1,0 +1,25 @@
+# Reverse proxy for the Arvan VPS deployment (docker compose --profile proxy).
+# SITE_ADDRESS example: yadakpro.ir
+{$SITE_ADDRESS}
+
+encode gzip zstd
+
+# Media served straight from the shared volume (faster than going through Django).
+handle /media/* {
+	uri strip_prefix /media
+	root * /srv/media
+	file_server
+}
+
+# Django: REST API, swagger docs, and the internal Django admin fallback.
+handle /api/* {
+	reverse_proxy backend:8000
+}
+handle /django-admin/* {
+	reverse_proxy backend:8000
+}
+
+# Everything else — storefront + Next.js admin panel.
+handle {
+	reverse_proxy frontend:3000
+}

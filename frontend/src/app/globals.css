@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-vazirmatn), system-ui, sans-serif;
+
+  /* Brand palette carried over from the validated prototype (storefront orange). */
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+}
+
+body {
+  /* Industrial navy from the prototype homepage. */
+  background-color: var(--color-gray-950);
+  color: var(--color-gray-100);
+}
+
+/* فاکتور چاپی: فقط دیالوگ فاکتور چاپ می‌شود، بقیه صفحه مخفی. */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  /* همه‌چیز را مخفی کن… */
+  body * {
+    visibility: hidden;
+  }
+  /* …به‌جز دیالوگ فاکتور و فرزندانش */
+  .invoice-dialog,
+  .invoice-dialog * {
+    visibility: visible;
+  }
+  .invoice-dialog {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    width: 100%;
+    max-height: none !important;
+    overflow: visible !important;
+    border: none !important;
+    background: white !important;
+  }
+}

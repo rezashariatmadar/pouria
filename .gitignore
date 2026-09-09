@@ -1,0 +1,23 @@
+# --- Python / Django (backend) ---
+__pycache__/
+*.pyc
+.venv/
+backend/media/
+backend/staticfiles/
+backend/.env
+.pytest_cache/
+
+# --- Node (frontend + root tooling) ---
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env*.local
+*.tsbuildinfo
+
+# --- Env & OS ---
+.env
+.env*.local
+.DS_Store
+
+# --- Deploy artifacts (prototype phase) ---
+.vercel/

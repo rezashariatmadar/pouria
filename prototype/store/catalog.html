@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کاتالوگ و لیست قطعات | یدک‌پرو</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+          colors: {
+            brand: {
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    .tilt-card {
+      transition: transform 0.12s ease-out, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-orange-500/20">یدک</div>
+          <span class="font-black text-slate-900 text-lg">یدک‌پـرو</span>
+        </a>
+      </div>
+
+      <!-- Quick Search -->
+      <div class="flex-1 max-w-md">
+        <div class="relative">
+          <input type="text" id="catalogSearch" oninput="filterCatalog()" placeholder="جستجو نام قطعه یا کد فنی ایساکو..." class="w-full bg-slate-100/90 border border-slate-200 rounded-2xl pr-4 pl-10 py-2.5 text-xs focus:ring-2 focus:ring-orange-500 focus:bg-white outline-hidden transition">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="../admin/index.html" class="text-xs text-amber-600 font-bold hover:underline bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl">پنل ادمین (پوریا)</a>
+        <a href="product-detail.html" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm">
+          <span>سبد خرید</span>
+          <span class="w-4 h-4 rounded-full bg-orange-500 text-white text-[10px] flex items-center justify-center font-mono">۱</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Active Car Filter Bar -->
+  <div class="bg-gradient-to-r from-orange-600 to-amber-500 text-white py-3 px-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2.5 font-bold">
+        <span class="text-amber-100">فیلتر فعال اتومبیل:</span>
+        <span class="bg-slate-950 text-white px-3 py-1 rounded-xl font-mono text-xs shadow-inner" id="activeCarBadge">همه خودروها</span>
+        <span id="activeCarHint" class="text-[11px] font-normal text-amber-100 hidden sm:inline" style="display:none;">• فقط قطعات ۱۰۰٪ سازگار با این مدل نمایش داده شده‌اند</span>
+      </div>
+      <a href="index.html" id="changeCarLink" class="cursor-pointer text-xs font-black underline hover:text-slate-950 transition">انتخاب خودرو</a>
+    </div>
+  </div>
+
+  <!-- Main Catalog Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+    <!-- Filters Sidebar -->
+    <aside class="space-y-5">
+      <div class="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm space-y-5">
+        <div class="font-black text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center justify-between">
+          <span>فیلترهای پیشرفته</span>
+          <button onclick="resetFilters()" class="cursor-pointer text-[11px] text-orange-600 font-bold hover:underline">حذف فیلترها</button>
+        </div>
+
+        <!-- Brand Filter -->
+        <div>
+          <label class="block text-xs font-black text-slate-800 mb-2.5">برند سازنده قطعه:</label>
+          <div class="space-y-2 text-xs">
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="ایساکو" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">ایساکو (ISACO اصل خط تولید)</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="والئو" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">والئو (Valeo فرانسه اصل)</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="کروز" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">کروز (Crouse قطعات برقی)</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="عظام" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">عظام (Ezam جلوبندی)</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="تکستار" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">تکستار (Textar ترمز آلمان)</span>
+            </label>
+            <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition">
+              <input type="checkbox" checked onchange="filterCatalog()" value="دنسو" class="brand-cb rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+              <span class="font-medium">دنسو (Denso شمع ژاپن)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="pt-4 border-t border-slate-100">
+          <label class="block text-xs font-black text-slate-800 mb-2.5">سیستم و دسته‌بندی قطعه:</label>
+          <div class="space-y-1 text-xs font-medium">
+            <button onclick="selectCategory('all', this)" data-cat="all" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl bg-orange-50 text-orange-950 font-bold transition">همه دسته‌ها</button>
+            <button onclick="selectCategory('ترمز', this)" data-cat="ترمز" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">سیستم ترمز (لنت و دیسک)</button>
+            <button onclick="selectCategory('تعلیق', this)" data-cat="تعلیق" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">جلوبندی و کمک‌فنر</button>
+            <button onclick="selectCategory('کلاچ', this)" data-cat="کلاچ" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">کیت کلاچ و گیربکس</button>
+            <button onclick="selectCategory('خنک‌کننده', this)" data-cat="خنک‌کننده" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">سیستم خنک‌کننده (رادیاتور و واترپمپ)</button>
+            <button onclick="selectCategory('برقی', this)" data-cat="برقی" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">قطعات برقی و سنسور</button>
+            <button onclick="selectCategory('بدنه', this)" data-cat="بدنه" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">چراغ و قطعات بدنه</button>
+            <button onclick="selectCategory('مصرفی', this)" data-cat="مصرفی" class="cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition">مصرفی و سرویس دوره‌ای</button>
+          </div>
+        </div>
+
+        <!-- Price Range Slider (JS Interaction) -->
+        <div class="pt-4 border-t border-slate-100 space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-slate-800">حداکثر قیمت:</span>
+            <span id="priceRangeLabel" class="font-mono font-bold text-orange-600">۵,۰۰۰,۰۰۰ تومان</span>
+          </div>
+          <input type="range" id="priceRange" min="500000" max="6000000" step="250000" value="6000000" oninput="updatePriceSlider(this.value)" class="w-full accent-orange-600 cursor-pointer">
+        </div>
+
+        <!-- Availability Filter -->
+        <div class="pt-4 border-t border-slate-100">
+          <label class="flex items-center gap-2.5 text-slate-700 cursor-pointer hover:text-orange-600 transition text-xs">
+            <input type="checkbox" id="availOnly" onchange="filterCatalog()" class="rounded text-orange-600 focus:ring-orange-500 cursor-pointer">
+            <span class="font-medium">فقط کالاهای موجود</span>
+          </label>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <section class="lg:col-span-3 space-y-4">
+      <div class="flex items-center justify-between text-xs text-slate-500 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+        <span class="font-medium">نمایش <strong id="visibleCountDisplay" class="font-mono text-slate-900">۶</strong> قطعه سازگار آماده ارسال فوری</span>
+        <div class="flex items-center gap-2">
+          <span>مرتب‌سازی:</span>
+          <select onchange="sortCatalog(this.value)" class="cursor-pointer bg-slate-50 border border-slate-200 rounded-xl p-1.5 text-xs font-bold outline-hidden">
+            <option value="popular">محبوب‌ترین و پرفروش</option>
+            <option value="price-asc">ارزان‌ترین قیمت</option>
+            <option value="price-desc">گران‌ترین قیمت</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Card 1: Brake Pads -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="ایساکو" data-category="ترمز" data-price="890000" data-cars="206 207 rana" data-available="true" data-name="لنت ترمز جلو پژو ۲۰۶ تیپ ۵ ایساکو" data-code="16401002" data-img="https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1600790142055-619df03207e6?w=600&auto=format&fit=crop&q=80" alt="لنت ترمز" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-blue-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">ایساکو اصل</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+              
+              <button onclick="openCatalogQuickView('لنت ترمز جلو پژو ۲۰۶ تیپ ۵ (ایساکو شرکتی)', '16401002', '۸۹۰,۰۰۰ تومان', 'ایساکو خط تولید', 'پژو ۲۰۶، ۲۰۷، رانا', 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با پژو ۲۰۶</span>
+              <button onclick="toggleCompare(this, 'لنت جلو ۲۰۶ ایساکو', '۸۹۰,۰۰۰ ت', 'ایساکو خط تولید', 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">لنت ترمز جلو پژو ۲۰۶ تیپ ۵ (ایساکو شرکتی)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد پارت‌نامبر: ۱۶۴۰۱۰۰۲</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 line-through font-mono">۹۵۰,۰۰۰ تومان</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۸۹۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: Clutch Disc -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="والئو" data-category="کلاچ" data-price="4850000" data-cars="206 pars" data-available="true" data-name="کیت کلاچ دیسک و صفحه پژو ۲۰۶ تیپ ۵ والئو سبز" data-code="826360" data-img="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=600&auto=format&fit=crop&q=80" alt="کیت کلاچ" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">والئو سبز اصل</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+              
+              <button onclick="openCatalogQuickView('کیت کلاچ (دیسک و صفحه) ۲۰۶ تیپ ۵ والئو', '826360-VAL', '۴,۸۵۰,۰۰۰ تومان', 'والئو فرانسه اصل', 'پژو ۲۰۶ و پارس TU5', 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با خودروی شما</span>
+              <button onclick="toggleCompare(this, 'کلاچ والئو سبز اصل', '۴,۸۵۰,۰۰۰ ت', 'والئو فرانسه', 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">کیت کلاچ (دیسک و صفحه) ۲۰۶ تیپ ۵ والئو</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد پارت‌نامبر: 826360-VAL</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 line-through font-mono">۵,۱۰۰,۰۰۰ تومان</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۴,۸۵۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Oxygen Sensor -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="کروز" data-category="برقی" data-price="1750000" data-cars="206" data-available="true" data-name="سنسور اکسیژن سیم کوتاه ۲۰۶ کروز" data-code="OX-CR-206" data-img="https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&auto=format&fit=crop&q=80" alt="سنسور اکسیژن" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">کروز شرکتی</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+              
+              <button onclick="openCatalogQuickView('سنسور اکسیژن ۲۰۶ (سیم کوتاه کروز اصل)', 'OX-CR-206', '۱,۷۵۰,۰۰۰ تومان', 'کروز خط تولید', 'پژو ۲۰۶ تیپ ۲ و ۵', 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با خودروی شما</span>
+              <button onclick="toggleCompare(this, 'سنسور اکسیژن ۲۰۶ کروز', '۱,۷۵۰,۰۰۰ ت', 'کروز خط تولید', 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">سنسور اکسیژن ۲۰۶ (سیم کوتاه کروز اصل)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: OX-CR-206</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت قطعی:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۷۵۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4: Water Pump -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="ایساکو" data-category="خنک‌کننده" data-price="1280000" data-cars="samand dena" data-callforprice="true" data-available="true" data-name="واتر پمپ سمند موتور ملی EF7 ایساکو" data-code="WP-EF7-88" data-img="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&auto=format&fit=crop&q=80" alt="واتر پمپ" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">ایساکو</span>
+              <span class="absolute top-2.5 left-2.5 bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md">نوسان ساعتی</span>
+              
+              <button onclick="openCatalogQuickView('واتر پمپ سمند موتور ملی EF7 ایساکو اصل', 'WP-EF7-88', 'استعلام روز', 'ایساکو شرکتی', 'سمند و دنا EF7', 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با سمند و دنا</span>
+              <button onclick="toggleCompare(this, 'واترپمپ EF7 ایساکو', 'استعلام', 'ایساکو شرکتی', 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">واتر پمپ سمند موتور ملی EF7 ایساکو اصل</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: WP-EF7-88</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-amber-700 font-bold">نرخ روز بازار:</div>
+              <div class="font-black text-xs text-amber-800">استعلام واتساپی</div>
+            </div>
+            <a href="https://wa.me/989121111111" class="cursor-pointer px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              استعلام
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 5: Headlight -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="کروز" data-category="بدنه" data-price="1450000" data-cars="quick" data-available="true" data-name="چراغ جلو کوئیک کروز" data-code="CR-QK-04" data-img="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&auto=format&fit=crop&q=80" alt="چراغ جلو" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">کروز خط تولید</span>
+              <span class="absolute top-2.5 left-2.5 bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md">چپ/راست</span>
+              
+              <button onclick="openCatalogQuickView('چراغ جلو کوئیک کروز (انتخاب سمت چپ/راست)', 'CR-QK-04', '۱,۴۵۰,۰۰۰ تومان', 'کروز خط تولید', 'کوئیک و کوئیک S', 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با کوئیک و کوئیک S</span>
+              <button onclick="toggleCompare(this, 'چراغ جلو کوئیک کروز', '۱,۴۵۰,۰۰۰ ت', 'کروز اصل', 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">چراغ جلو کوئیک کروز (انتخاب سمت چپ/راست)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: CR-QK-04</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت پایه:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۴۵۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              انتخاب جهت
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 6: Shock Absorber -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="عظام" data-category="تعلیق" data-price="1150000" data-cars="pride" data-available="true" data-name="کمک فنر جلو پراید عظام" data-code="EZ-PR-110" data-img="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&auto=format&fit=crop&q=80" alt="کمک فنر" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-indigo-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">عظام</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+              
+              <button onclick="openCatalogQuickView('کمک فنر جلو پراید (عظام اصل شرکتی)', 'EZ-PR-110', '۱,۱۵۰,۰۰۰ تومان', 'عظام شرکتی', 'انواع پراید', 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با انواع پراید</span>
+              <button onclick="toggleCompare(this, 'کمک‌فنر پراید عظام', '۱,۱۵۰,۰۰۰ ت', 'عظام خط تولید', 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">کمک فنر جلو پراید (عظام اصل شرکتی)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: EZ-PR-110</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت قطعی:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۱۵۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 7: Slotted Rotors Textar -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="تکستار" data-category="ترمز" data-price="2050000" data-cars="206 207" data-available="true" data-name="دیسک چرخ جلو خنک شونده تکستار پژو ۲۰۶" data-code="TX-206-ROTOR" data-img="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=600&auto=format&fit=crop&q=80" alt="دیسک ترمز" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">تکستار آلمان</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">خنک‌شونده</span>
+              
+              <button onclick="openCatalogQuickView('دیسک چرخ جلو خنک‌شونده تکستار (دست ۲ عددی)', 'TX-206-ROTOR', '۲,۰۵۰,۰۰۰ تومان', 'تکستار آلمان اصل', 'پژو ۲۰۶ و ۲۰۷', 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با پژو ۲۰۶ و ۲۰۷</span>
+              <button onclick="toggleCompare(this, 'دیسک تکستار آلمان', '۲,۰۵۰,۰۰۰ ت', 'تکستار آلمان', 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">دیسک چرخ جلو خنک‌شونده تکستار (دست ۲ تایی)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: TX-206-ROTOR</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 line-through font-mono">۲,۲۵۰,۰۰۰ تومان</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۲,۰۵۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 8: Dual Radiator 405 -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="ایساکو" data-category="خنک‌کننده" data-price="2100000" data-cars="pars samand 405" data-available="false" data-name="رادیاتور آب دولول پژو ۴۰۵ و پارس ایران رادیاتور" data-code="IR-405-RAD" data-img="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&auto=format&fit=crop&q=80" alt="رادیاتور آب" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 opacity-60">
+              <span class="absolute top-2.5 right-2.5 bg-blue-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">ایران رادیاتور</span>
+              <span class="absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">ناموجود</span>
+              
+              <button onclick="openCatalogQuickView('رادیاتور آب دولول پژو ۴۰۵ و پارس', 'IR-405-RAD', '۲,۱۰۰,۰۰۰ تومان', 'ایران رادیاتور اصل', 'پژو ۴۰۵، پارس و سمند', 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با موتور XU7</span>
+              <button onclick="toggleCompare(this, 'رادیاتور ۴۰۵ ایران‌رادیاتور', '۲,۱۰۰,۰۰۰ ت', 'ایران رادیاتور', 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">رادیاتور آب دولول پژو ۴۰۵ و پارس ایران رادیاتور</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: IR-405-RAD</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">آخرین قیمت ثبت‌شده:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۲,۱۰۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <button onclick="notifyMe('رادیاتور آب دولول پژو ۴۰۵ و پارس (ایران رادیاتور)')" class="cursor-pointer px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              موجود شد خبرم کن
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 9: 207 Tail Light Neon -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="کروز" data-category="بدنه" data-price="1380000" data-cars="207 206" data-available="true" data-name="چراغ عقب ۲۰۷ کروز نئون دودی" data-code="CR-207-REAR" data-img="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&auto=format&fit=crop&q=80" alt="چراغ عقب ۲۰۷" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">کروز خط تولید</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">نئون دودی</span>
+              
+              <button onclick="openCatalogQuickView('چراغ خطر عقب پژو ۲۰۷ نئون‌دار کروز', 'CR-207-REAR', '۱,۳۸۰,۰۰۰ تومان', 'کروز خط تولید', 'پژو ۲۰۷ و ۲۰۶', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با پژو ۲۰۷</span>
+              <button onclick="toggleCompare(this, 'چراغ عقب ۲۰۷ کروز', '۱,۳۸۰,۰۰۰ ت', 'کروز خط تولید', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">چراغ خطر عقب پژو ۲۰۷ نئون‌دار کروز (چپ/راست)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: CR-207-REAR</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت واحد:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۳۸۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              انتخاب جهت
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 10: Denso Spark Plugs -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="دنسو" data-category="برقی" data-price="1420000" data-cars="206 pars samand dena quick saina tiba" data-available="true" data-name="شمع موتور سوزنی ایریدیوم دنسو ژاپن" data-code="IK20-DENSO" data-img="https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&auto=format&fit=crop&q=80" alt="شمع موتور" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">دنسو ژاپن</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">دست ۴ تایی</span>
+              
+              <button onclick="openCatalogQuickView('شمع موتور سوزنی ایریدیوم دنسو ژاپن', 'IK20-DENSO', '۱,۴۲۰,۰۰۰ تومان', 'دنسو ژاپن اصل', 'موتورهای TU5، EF7 و M15', 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با TU5 و EF7</span>
+              <button onclick="toggleCompare(this, 'شمع دنسو ژاپن', '۱,۴۲۰,۰۰۰ ت', 'دنسو ژاپن', 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">شمع موتور سوزنی ایریدیوم دنسو ژاپن (دست ۴ عددی)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: IK20-DENSO</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 line-through font-mono">۱,۶۰۰,۰۰۰ تومان</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۴۲۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 11: Timing Belt Dayco -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="ایساکو" data-category="مصرفی" data-price="880000" data-cars="206" data-available="true" data-name="تسمه تایم ۱۰۴ دندانه دایکو ایتالیا پژو ۲۰۶" data-code="DYC-104-TB" data-img="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=600&auto=format&fit=crop&q=80" alt="تسمه تایم" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-red-800 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">دایکو ایتالیا</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">بیمه خسارت</span>
+              
+              <button onclick="openCatalogQuickView('تسمه تایم ۱۰۴ دندانه دایکو ایتالیا', 'DYC-104-TB', '۸۸۰,۰۰۰ تومان', 'دایکو ایتالیا اصل', 'پژو ۲۰۶ تیپ ۲ و ۵', 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با پژو ۲۰۶</span>
+              <button onclick="toggleCompare(this, 'تسمه تایم دایکو', '۸۸۰,۰۰۰ ت', 'دایکو ایتالیا', 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">تسمه تایم ۱۰۴ دندانه دایکو ایتالیا (با بیمه ایران)</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: DYC-104-TB</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت با ضمانت:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۸۸۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 12: Control Arm Amirnia -->
+        <div class="tilt-card catalog-item bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-brand="عظام" data-category="تعلیق" data-price="1620000" data-cars="206 rana" data-available="true" data-name="طبق کامل چپ و راست پژو ۲۰۶ امیرنیا اصل" data-code="AMIR-206-ARM" data-img="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80">
+          <div>
+            <div class="h-44 rounded-2xl mb-3 overflow-hidden relative border border-slate-100 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=600&auto=format&fit=crop&q=80" alt="طبق کامل" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <span class="absolute top-2.5 right-2.5 bg-indigo-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">امیرنیا اصل</span>
+              <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+              
+              <button onclick="openCatalogQuickView('طبق کامل چپ و راست پژو ۲۰۶ امیرنیا', 'AMIR-206-ARM', '۱,۶۲۰,۰۰۰ تومان', 'امیرنیا اصل', 'پژو ۲۰۶ و رانا', 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80')" class="cursor-pointer absolute inset-x-3 bottom-2.5 py-1.5 bg-slate-950/80 hover:bg-slate-950 text-white text-[11px] font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1 shadow-lg">
+                <span>پیش‌نمایش سریع</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[11px] text-emerald-700 font-bold">✓ سازگار با انواع ۲۰۶ و رانا</span>
+              <button onclick="toggleCompare(this, 'طبق کامل ۲۰۶ امیرنیا', '۱,۶۲۰,۰۰۰ ت', 'امیرنیا اصل', 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=100&auto=format&fit=crop&q=80')" class="compare-btn text-[10px] text-slate-400 hover:text-orange-600 font-bold flex items-center gap-1 cursor-pointer">
+                <span>+ مقایسه</span>
+              </button>
+            </div>
+            <h3 class="font-extrabold text-xs text-slate-900 leading-snug">طبق کامل چپ و راست پژو ۲۰۶ امیرنیا اصل</h3>
+            <div class="text-[11px] font-mono text-slate-400 mt-1">کد: AMIR-206-ARM</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-slate-400 font-normal font-mono">قیمت دست کامل:</div>
+              <div class="font-black text-sm text-slate-900 font-mono">۱,۶۲۰,۰۰۰ <span class="text-[10px] font-normal font-sans">تومان</span></div>
+            </div>
+            <a href="product-detail.html" class="cursor-pointer px-3.5 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+              خرید قطعه
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty State: No Matching Parts (JS toggles visibility) -->
+      <div id="emptyState" class="hidden bg-white rounded-3xl border-2 border-dashed border-slate-200 p-10 text-center space-y-4">
+        <div class="w-16 h-16 mx-auto rounded-3xl bg-orange-50 border border-orange-100 text-orange-600 flex items-center justify-center text-2xl">🔍</div>
+        <h3 class="font-black text-sm text-slate-900">قطعه‌ای مطابق فیلترهای انتخابی شما یافت نشد</h3>
+        <p class="text-xs text-slate-500 leading-relaxed max-w-md mx-auto">
+          این قطعه ممکن است هنوز در انبار آنلاین ثبت نشده باشد. کارشناسان ما در واتساپ آن را برای شما پیدا کرده و قیمت روز را اعلام می‌کنند.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <a href="https://wa.me/989121111111?text=سلام+دنبال+قطعه+ای+بودم+که+در+سایت+پیدا+نکردم" target="_blank" class="cursor-pointer px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition">
+            تماس با کارشناس قطعات (واتساپ)
+          </a>
+          <button onclick="clearCarFilter()" class="cursor-pointer px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+            حذف فیلتر خودرو
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Comparison Floating Bar (JS Powered) -->
+  <div id="compareBar" class="hidden fixed bottom-6 inset-x-4 max-w-2xl mx-auto z-40 bg-slate-950/95 text-white p-4 rounded-3xl shadow-2xl border border-slate-800 flex items-center justify-between gap-4 backdrop-blur-md animate-slide-up">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-xs">
+        <span id="compareCount">۲</span>
+      </div>
+      <div class="text-xs">
+        <div class="font-bold text-white">قطعات انتخابی جهت مقایسه تخصصی</div>
+        <div id="compareItemsNames" class="text-[11px] text-slate-400 truncate max-w-xs"></div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="clearCompare()" class="cursor-pointer text-xs text-slate-400 hover:text-white px-2 py-1">پاک کردن</button>
+      <button onclick="openCompareModal()" class="cursor-pointer px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-500 text-white rounded-xl text-xs font-bold shadow-md shadow-orange-500/30">
+        مشاهده جدول مقایسه
+      </button>
+    </div>
+  </div>
+
+  <!-- Comparison Modal -->
+  <div id="compareModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border border-slate-200 text-right space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <h3 class="text-sm font-black text-slate-900">جدول مقایسه مشخصات فنی و اصالت دو قطعه</h3>
+        <button onclick="closeCompareModal()" class="cursor-pointer w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">✕</button>
+      </div>
+      <div id="compareModalBody" class="grid grid-cols-2 gap-4">
+        <!-- Dynamic Side-by-Side Content Generated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal Container -->
+  <div id="quickViewModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 text-right space-y-4 relative">
+      <button onclick="closeCatalogQuickView()" class="cursor-pointer absolute top-4 left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">✕</button>
+      <div class="h-48 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+        <img id="qImg" src="" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <span id="qBadge" class="text-[10px] font-bold bg-orange-100 text-orange-800 px-2.5 py-0.5 rounded-md"></span>
+        <h3 id="qTitle" class="text-sm font-black text-slate-900 mt-1"></h3>
+        <div id="qCode" class="text-[11px] font-mono text-slate-400 mt-0.5"></div>
+      </div>
+      <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+        <div>
+          <div class="text-[10px] text-slate-400">قیمت قطعی:</div>
+          <div id="qPrice" class="font-black text-base text-slate-900 font-mono"></div>
+        </div>
+        <a href="product-detail.html" class="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-xs font-bold shadow-md shadow-orange-500/25">
+          صفحه جزئیات و خرید
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeCategory = 'all';
+    let maxPrice = 6000000;
+    let compareList = [];
+    let activeCarModel = null;  // model id from ?model= (e.g. 'quick', '206')
+    let activeCarTrim = '';     // Persian trim label from ?trim=
+
+    // 1. Live Filtering
+    function filterCatalog() {
+      const q = document.getElementById('catalogSearch').value.toLowerCase().trim();
+      const selectedBrands = Array.from(document.querySelectorAll('.brand-cb:checked')).map(cb => cb.value);
+      const availCb = document.getElementById('availOnly');
+      const availOnly = availCb ? availCb.checked : false;
+      let count = 0;
+
+      document.querySelectorAll('.catalog-item').forEach(item => {
+        const brand = item.dataset.brand;
+        const cat = item.dataset.category;
+        const price = parseInt(item.dataset.price, 10);
+        const name = (item.dataset.name + ' ' + item.dataset.code).toLowerCase();
+        const cars = (item.dataset.cars || '').split(/\s+/).filter(Boolean);
+
+        const matchQ = !q || name.includes(q);
+        const matchBrand = selectedBrands.includes(brand);
+        const matchCat = (activeCategory === 'all') || cat === activeCategory;
+        const matchCar = !activeCarModel || cars.includes(activeCarModel);
+        // Call-for-price parts have no fixed price to compare against the slider
+        const isCallForPrice = item.dataset.callforprice === 'true';
+        const matchPrice = isCallForPrice || isNaN(price) || price <= maxPrice;
+        const matchAvail = !availOnly || item.dataset.available !== 'false';
+
+        if (matchQ && matchBrand && matchCat && matchPrice && matchCar && matchAvail) {
+          item.style.display = '';
+          count++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      document.getElementById('visibleCountDisplay').textContent = count.toLocaleString('fa-IR');
+      document.getElementById('emptyState').classList.toggle('hidden', count > 0);
+    }
+
+    function selectCategory(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.className = 'cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl text-slate-600 hover:bg-slate-50 transition';
+      });
+      btn.className = 'cat-btn cursor-pointer w-full text-right py-2 px-3 rounded-xl bg-orange-50 text-orange-950 font-bold transition';
+      filterCatalog();
+    }
+
+    function updatePriceSlider(val) {
+      maxPrice = parseInt(val, 10);
+      document.getElementById('priceRangeLabel').textContent = maxPrice.toLocaleString('fa-IR') + ' تومان';
+      filterCatalog();
+    }
+
+    function sortCatalog(val) {
+      const grid = document.getElementById('catalogGrid');
+      const items = Array.from(grid.querySelectorAll('.catalog-item'));
+
+      items.sort((a, b) => {
+        const pA = parseInt(a.dataset.price, 10) || 0;
+        const pB = parseInt(b.dataset.price, 10) || 0;
+        if (val === 'price-asc') return pA - pB;
+        if (val === 'price-desc') return pB - pA;
+        return 0;
+      });
+
+      items.forEach(item => grid.appendChild(item));
+    }
+
+    function resetFilters() {
+      document.querySelectorAll('.brand-cb').forEach(cb => cb.checked = true);
+      document.getElementById('catalogSearch').value = '';
+      const availCb = document.getElementById('availOnly');
+      if (availCb) availCb.checked = false;
+      document.getElementById('priceRange').value = 6000000;
+      updatePriceSlider(6000000);
+      const allBtn = document.querySelector('.cat-btn[data-cat="all"]');
+      if (allBtn) {
+        selectCategory('all', allBtn);
+      } else {
+        activeCategory = 'all';
+      }
+      clearCarFilter();
+    }
+
+    // 2. Interactive Quick View Modal
+    function openCatalogQuickView(title, code, price, badge, car, img) {
+      document.getElementById('qTitle').textContent = title;
+      document.getElementById('qCode').textContent = `کد فنی: ${code} | سازگار با: ${car}`;
+      document.getElementById('qPrice').textContent = price;
+      document.getElementById('qBadge').textContent = badge;
+      document.getElementById('qImg').src = img;
+      document.getElementById('quickViewModal').classList.remove('hidden');
+    }
+
+    function closeCatalogQuickView() {
+      document.getElementById('quickViewModal').classList.add('hidden');
+    }
+
+    // 3. Part Comparison System
+    function toggleCompare(btn, name, price, brand, img) {
+      const exists = compareList.find(i => i.name === name);
+      if (exists) {
+        compareList = compareList.filter(i => i.name !== name);
+        btn.innerHTML = '<span>+ مقایسه</span>';
+        btn.classList.remove('text-orange-600');
+      } else {
+        if (compareList.length >= 2) {
+          alert('در هر نوبت می‌توانید حداکثر ۲ قطعه را برای مقایسه انتخاب کنید.');
+          return;
+        }
+        compareList.push({ name, price, brand, img });
+        btn.innerHTML = '<span>✓ در مقایسه</span>';
+        btn.classList.add('text-orange-600');
+      }
+
+      updateCompareBar();
+    }
+
+    function updateCompareBar() {
+      const bar = document.getElementById('compareBar');
+      if (compareList.length === 0) {
+        bar.classList.add('hidden');
+      } else {
+        bar.classList.remove('hidden');
+        document.getElementById('compareCount').textContent = compareList.length;
+        document.getElementById('compareItemsNames').textContent = compareList.map(i => i.name).join(' vs ');
+      }
+    }
+
+    function clearCompare() {
+      compareList = [];
+      document.querySelectorAll('.compare-btn').forEach(b => {
+        b.innerHTML = '<span>+ مقایسه</span>';
+        b.classList.remove('text-orange-600');
+      });
+      updateCompareBar();
+    }
+
+    function openCompareModal() {
+      if (compareList.length < 2) {
+        alert('برای مشاهده مقایسه لطفا ۲ قطعه را انتخاب کنید.');
+        return;
+      }
+      const body = document.getElementById('compareModalBody');
+      body.innerHTML = compareList.map(p => `
+        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-center space-y-3">
+          <img src="${p.img}" class="w-24 h-24 rounded-2xl object-cover mx-auto border border-slate-200 shadow-xs">
+          <div class="font-black text-xs text-slate-900">${p.name}</div>
+          <div class="text-[11px] font-bold text-orange-700 bg-orange-100 py-1 rounded-lg">${p.brand}</div>
+          <div class="text-xs font-mono font-bold text-slate-800">${p.price}</div>
+          <div class="text-[10px] text-emerald-700">✓ تضمین اصالت و پلمپ فیزیکی</div>
+          <a href="product-detail.html" class="block w-full py-2 bg-slate-900 hover:bg-orange-600 text-white rounded-xl text-xs font-bold transition">خرید این قطعه</a>
+        </div>
+      `).join('');
+      document.getElementById('compareModal').classList.remove('hidden');
+    }
+
+    function closeCompareModal() {
+      document.getElementById('compareModal').classList.add('hidden');
+    }
+
+    // 4. 3D Card Hover Tilt
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotX = -(y / (rect.height / 2)) * 6;
+        const rotY = (x / (rect.width / 2)) * 6;
+        card.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-3px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    // 5. Notify-Me for Out-of-Stock Parts
+    function notifyMe(partName) {
+      alert(`🔔 ثبت شد!\nبه محض موجود شدن «${partName}» در انبار، از طریق پیامک به شما اطلاع می‌دهیم.`);
+    }
+
+    // 6. Deep-Link Init (homepage vehicle selector writes ?make/&model/&trim, nav links write ?cat, search writes ?q)
+    const CAR_LABELS = {
+      ikco: 'ایران‌خودرو', saipa: 'سایپا',
+      '206': 'پژو ۲۰۶', '207': 'پژو ۲۰۷', pars: 'پژو پارس', samand: 'سمند', dena: 'دنا', tara: 'تارا', rana: 'رانا',
+      pride: 'پراید', tiba: 'تیبا', saina: 'ساینا', quick: 'کوئیک', shahin: 'شاهین'
+    };
+    const CAT_SLUGS = {
+      brakes: 'ترمز', suspension: 'تعلیق', clutch: 'کلاچ', cooling: 'خنک‌کننده',
+      electrical: 'برقی', body: 'بدنه', consumable: 'مصرفی'
+    };
+
+    function updateActiveCarUI() {
+      const badge = document.getElementById('activeCarBadge');
+      const hint = document.getElementById('activeCarHint');
+      const link = document.getElementById('changeCarLink');
+      if (activeCarModel) {
+        const label = CAR_LABELS[activeCarModel] || activeCarModel;
+        badge.textContent = activeCarTrim ? `${label} (${activeCarTrim})` : label;
+        if (hint) hint.style.display = '';
+        if (link) link.textContent = 'تغییر خودرو';
+      } else {
+        badge.textContent = 'همه خودروها';
+        if (hint) hint.style.display = 'none';
+        if (link) link.textContent = 'انتخاب خودرو';
+      }
+    }
+
+    function clearCarFilter() {
+      activeCarModel = null;
+      activeCarTrim = '';
+      updateActiveCarUI();
+      const params = new URLSearchParams(window.location.search);
+      params.delete('make'); params.delete('model'); params.delete('trim');
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? `catalog.html?${qs}` : 'catalog.html');
+      filterCatalog();
+    }
+
+    function initFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const model = params.get('model');
+      const trim = params.get('trim');
+      const cat = params.get('cat');
+      const q = params.get('q');
+
+      if (model) {
+        activeCarModel = model;
+        activeCarTrim = trim || '';
+      }
+      updateActiveCarUI();
+
+      if (cat && CAT_SLUGS[cat]) {
+        const btn = document.querySelector(`.cat-btn[data-cat="${CAT_SLUGS[cat]}"]`);
+        if (btn) selectCategory(CAT_SLUGS[cat], btn);
+      }
+
+      if (q) document.getElementById('catalogSearch').value = q;
+
+      filterCatalog();
+    }
+
+    initFromUrl();
+  </script>
+</body>
+</html>

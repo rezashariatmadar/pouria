@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>یدک‌پرو | بزرگترین بازار آنلاین لوازم یدکی خودرو (ایران‌خودرو و سایپا)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    .hero-pattern {
+      background-color: #0b1329;
+      background-image: radial-gradient(#1e293b 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .blueprint-grid {
+      background-color: #050a18;
+      background-image: linear-gradient(rgba(30, 58, 138, 0.18) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(30, 58, 138, 0.18) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-slide-up {
+      animation: slideInUp 0.4s ease-out forwards;
+    }
+    @keyframes radarPulse {
+      0% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.8); }
+      70% { transform: scale(1.15); box-shadow: 0 0 0 16px rgba(249, 115, 22, 0); }
+      100% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+    }
+    .radar-pulse {
+      animation: radarPulse 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    .tilt-card {
+      transition: transform 0.12s ease-out, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-orange-500 selection:text-white relative">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-slate-950 text-slate-300 text-[11px] py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1.5 text-amber-400 font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+          <span>تضمین ۱۰۰٪ اصالت فیزیکی قطعات شرکتی ایساکو و کروز</span>
+        </div>
+        <span class="hidden md:inline text-slate-700">|</span>
+        <span class="hidden md:inline text-slate-400">تحویل اکسپرس ۲ ساعته در تهران | ارسال با تیپاکس و باربری به سراسر کشور</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="../admin/index.html" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1.5 transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>پنل مدیریت (پوریا)</span>
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header with Live Search Autocomplete -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-6">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 cursor-pointer shrink-0">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-600 via-amber-500 to-amber-400 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/25">
+          یدک
+        </div>
+        <div>
+          <div class="font-black text-slate-900 text-xl tracking-tight flex items-center gap-1">
+            <span>یدک‌پـرو</span>
+            <span class="text-[10px] font-bold bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded-md">بازار آنلاین</span>
+          </div>
+          <div class="text-[11px] text-slate-500 font-medium">مرجع تخصصی قطعات ایران‌خودرو و سایپا</div>
+        </div>
+      </a>
+
+      <!-- Search Input with JS Autocomplete Dropdown -->
+      <div class="flex-1 max-w-2xl hidden md:block relative">
+        <div class="relative">
+          <input type="text" id="mainSearchInput" oninput="handleSearchInput(this.value)" onfocus="handleSearchFocus()" onkeydown="if (event.key === 'Enter') submitMainSearch()" placeholder="نام قطعه (لنت، دیسک، چراغ، واترپمپ) یا کد ایساکو..." class="w-full bg-slate-100/90 border border-slate-200 rounded-2xl pr-12 pl-24 py-3 text-xs focus:ring-2 focus:ring-orange-500 focus:bg-white outline-hidden transition shadow-inner">
+          <svg class="w-5 h-5 text-slate-400 absolute right-4 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <button onclick="submitMainSearch()" class="cursor-pointer absolute left-2 top-2 px-3.5 py-1.5 bg-slate-900 hover:bg-orange-600 text-white rounded-xl text-[11px] font-bold transition">
+            جستجو
+          </button>
+        </div>
+
+        <!-- Autocomplete Dropdown (JS Powered) -->
+        <div id="searchDropdown" class="hidden absolute top-14 right-0 w-full bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 divide-y divide-slate-100 text-right">
+          <div class="p-2 bg-slate-50 text-[11px] font-bold text-slate-400 px-4">نتایج پیشنهادی لحظه‌ای:</div>
+          <div id="searchResultsList" class="max-h-72 overflow-y-auto">
+            <!-- Dynamic items generated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- User Actions & Phone Help -->
+      <div class="flex items-center gap-3 shrink-0">
+        <!-- Call Consultant -->
+        <a href="tel:02188888888" class="hidden lg:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 transition cursor-pointer border border-slate-200">
+          <div class="w-7 h-7 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+          </div>
+          <div>
+            <div class="text-[10px] text-slate-400 font-normal">مشاوره رایگان خرید</div>
+            <div class="text-xs font-bold font-mono">۰۲۱-۸۸۸۸۸۸۸۸</div>
+          </div>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="catalog.html" class="cursor-pointer flex items-center gap-2 px-4 py-3 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold transition shadow-md shadow-orange-500/25">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          <span>سبد خرید</span>
+          <span class="w-5 h-5 rounded-full bg-slate-950 text-white text-[10px] flex items-center justify-center font-bold">۱</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Secondary Category Navigation Bar -->
+    <div class="border-t border-slate-100 bg-white px-4 sm:px-6 hidden md:block">
+      <div class="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-600 font-semibold h-11">
+        <div class="flex items-center gap-6">
+          <a href="catalog.html" class="flex items-center gap-1.5 text-slate-900 font-bold hover:text-orange-600 transition">
+            <svg class="w-4 h-4 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <span>تمام دسته‌بندی‌ها</span>
+          </a>
+          <a href="catalog.html?cat=consumable" class="hover:text-orange-600 transition">قطعات مصرفی و سرویس</a>
+          <a href="catalog.html?cat=brakes" class="hover:text-orange-600 transition">سیستم ترمز</a>
+          <a href="catalog.html?cat=suspension" class="hover:text-orange-600 transition">جلوبندی و تعلیق</a>
+          <a href="catalog.html?cat=clutch" class="hover:text-orange-600 transition">کیت کلاچ و گیربکس</a>
+          <a href="catalog.html?cat=cooling" class="hover:text-orange-600 transition">سیستم خنک‌کننده</a>
+          <a href="catalog.html?cat=electrical" class="hover:text-orange-600 transition">برقی و الکترونیک</a>
+          <a href="catalog.html?cat=body" class="hover:text-orange-600 transition">چراغ و قطعات بدنه</a>
+        </div>
+        <div class="flex items-center gap-4 text-[11px] text-slate-500">
+          <span class="flex items-center gap-1 text-emerald-600 font-bold">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            ضمانت ۱۰۰٪ اصالت فیزیکی قطعات
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Automotive Background & Interactive Vehicle Selector -->
+  <section class="hero-pattern text-white py-12 sm:py-16 px-4 relative overflow-hidden border-b border-slate-800">
+    
+    <div class="max-w-5xl mx-auto text-center space-y-4 relative z-10">
+      
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-orange-500/10 border border-orange-500/30 text-orange-400 rounded-full text-xs font-bold shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+        <span>بزرگترین کاتالوگ آنلاین قطعات اصلی ایران‌خودرو و سایپا</span>
+      </div>
+      
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight sm:leading-snug text-white">
+        قطعه دقیق اتومبیلت رو با قیمت لحظه‌ای و <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">تضمین اصالت</span> پیدا کن
+      </h1>
+      
+      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+        دیگر نگران خرید قطعه اشتباه یا تقلبی نباشید؛ اتومبیل خود را انتخاب کنید تا تمامی قطعات سازگار به همراه قیمت کارخانه و بازار برای شما فیلتر شوند.
+      </p>
+
+      <!-- The 3-Step Vehicle Selector Card -->
+      <div class="mt-8 bg-white text-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-100 text-right">
+        
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-5">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-xl bg-orange-600 text-white flex items-center justify-center shadow-md shadow-orange-500/30">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-900">ویجت هوشمند انتخاب خودرو (فیلتر ۱۰۰٪ قطعات سازگار)</div>
+              <div class="text-[11px] text-slate-500">برای مشاهده فقط قطعات مناسب اتومبیل خود، ۳ فیلتر زیر را انتخاب کنید:</div>
+            </div>
+          </div>
+          <span id="compatibleCounter" class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5 transition">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span id="counterText">۱۴۸ قطعه سازگار آماده ارسال فوری</span>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Step 1 -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+              <span>۱. شرکت خودروساز</span>
+              <span class="text-[10px] text-orange-600 font-normal">مرحله اول</span>
+            </label>
+            <select id="carMake" onchange="onMakeChange()" class="cursor-pointer w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold focus:ring-2 focus:ring-orange-500 focus:bg-white text-slate-900 outline-hidden transition shadow-2xs">
+              <option value="ikco">ایران خودرو (IKCO)</option>
+              <option value="saipa">سایپا (Saipa)</option>
+            </select>
+          </div>
+
+          <!-- Step 2 -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+              <span>۲. مدل اتومبیل</span>
+              <span class="text-[10px] text-orange-600 font-normal">مرحله دوم</span>
+            </label>
+            <select id="carModel" onchange="onModelChange()" class="cursor-pointer w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold focus:ring-2 focus:ring-orange-500 focus:bg-white text-slate-900 outline-hidden transition shadow-2xs">
+              <option value="206">پژو ۲۰۶</option>
+              <option value="pars">پژو پارس</option>
+              <option value="samand">سمند</option>
+              <option value="dena">دنا / دنا پلاس</option>
+              <option value="tara">تارا</option>
+            </select>
+          </div>
+
+          <!-- Step 3 -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+              <span>۳. تیپ و موتور</span>
+              <span class="text-[10px] text-orange-600 font-normal">مرحله سوم</span>
+            </label>
+            <select id="carTrim" onchange="updateCompatibleCounter()" class="cursor-pointer w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xs font-bold focus:ring-2 focus:ring-orange-500 focus:bg-white text-slate-900 outline-hidden transition shadow-2xs">
+              <option value="type5">تیپ ۵ (موتور TU5)</option>
+              <option value="type2">تیپ ۲ (موتور TU3)</option>
+              <option value="sd">صندوقدار (SD)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Quick Cars Strip & Big Action Button -->
+        <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-[11px] text-slate-400 font-semibold">انتخاب فوری:</span>
+            <button onclick="setQuickCar('ikco', '206', 'type5')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-900 rounded-xl text-xs font-semibold transition">پژو ۲۰۶ تیپ ۵</button>
+            <button onclick="setQuickCar('ikco', 'pars', 'pars_tu5')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-900 rounded-xl text-xs font-semibold transition">پژو پارس TU5</button>
+            <button onclick="setQuickCar('saipa', 'quick', 'quick_s')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-900 rounded-xl text-xs font-semibold transition">کوئیک S</button>
+            <button onclick="setQuickCar('ikco', 'samand', 'ef7')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-900 rounded-xl text-xs font-semibold transition">سمند EF7</button>
+          </div>
+
+          <button onclick="goToFilteredCatalog()" class="cursor-pointer w-full sm:w-auto px-7 py-3 bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2.5">
+            <span>مشاهده و خرید قطعات سازگار</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Trust Badges Bar -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
+    <div class="bg-white rounded-3xl border border-slate-200/90 p-5 shadow-lg shadow-slate-200/50 grid grid-cols-2 lg:grid-cols-4 gap-4 text-right">
+      
+      <div class="flex items-center gap-3.5 p-2">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center shrink-0 shadow-xs">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-xs text-slate-900">ضمانت اصالت کالا</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">تضمین پلمپ ایساکو و کروز</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 p-2">
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0 shadow-xs">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-xs text-slate-900">ارسال ۲ ساعته در تهران</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">پیک موتوری و وانت فوری</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 p-2">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 shadow-xs">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-xs text-slate-900">استعلام شماره شاسی (VIN)</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">تطابق ۱۰۰٪ قبل از بسته‌بندی</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 p-2">
+        <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center shrink-0 shadow-xs">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-xs text-slate-900">ارسال به سراسر کشور</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">تیپاکس، چاپار و باربری ترمینال</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2 Promotional Marketing Banners with Real Automotive Photography -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Promo 1 -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg border border-slate-700 min-h-[200px] flex items-center p-7 text-white">
+        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&auto=format&fit=crop&q=80" alt="سرویس خودرو" class="absolute inset-0 w-full h-full object-cover brightness-[0.28]">
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-bold bg-orange-600 text-white px-2.5 py-1 rounded-md shadow-xs">سرویس دوره‌ای اقتصادی</span>
+          <h3 class="font-black text-lg sm:text-xl">پک کامل لنت ترمز + روغن و فیلترها</h3>
+          <p class="text-xs text-slate-300 max-w-sm leading-relaxed">تضمین بالاترین کیفیت با فیلتر سرکان و روغن بهران؛ تحویل ۱ ساعته در تهران</p>
+          <a href="catalog.html?cat=consumable" class="cursor-pointer inline-flex items-center gap-1 text-xs font-bold text-amber-400 hover:text-amber-300 pt-1 transition">
+            <span>مشاهده پک‌های ویژه تخفیف‌دار</span>
+            <span>←</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Promo 2 -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg border border-amber-800/40 min-h-[200px] flex items-center p-7 text-white">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80" alt="استعلام شاسی" class="absolute inset-0 w-full h-full object-cover brightness-[0.25]">
+        <div class="relative z-10 space-y-2">
+          <span class="text-[10px] font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-md shadow-xs">برگ برنده پوریا</span>
+          <h3 class="font-black text-lg sm:text-xl">استعلام هوشمند با شماره شاسی (VIN)</h3>
+          <p class="text-xs text-amber-100 max-w-sm leading-relaxed">شماره شاسی ماشینت رو بنویس؛ کارشناسان انبار قبل از ارسال ۱۰۰٪ تطابق قطعه رو تایید می‌کنن</p>
+          <a href="product-detail.html" class="cursor-pointer inline-flex items-center gap-1 text-xs font-bold text-white hover:underline pt-1 transition">
+            <span>تست خرید بدون ریسک مرجوعی</span>
+            <span>←</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Categories Grid with SVG Icons -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-lg font-black text-slate-900">دسته‌بندی‌های تخصصی قطعات خودرو</h2>
+        <p class="text-xs text-slate-500 mt-0.5">انتخاب سریع بر اساس سیستم فنی اتومبیل</p>
+      </div>
+      <a href="catalog.html" class="cursor-pointer text-xs font-bold text-orange-600 hover:text-orange-700 flex items-center gap-1 transition">
+        <span>مشاهده همه دسته‌ها</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      
+      <a href="catalog.html?cat=brakes" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">سیستم ترمز</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">لنت، دیسک، کاسه</div>
+      </a>
+
+      <a href="catalog.html?cat=suspension" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">جلوبندی و تعلیق</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">کمک‌فنر، طبق، سیبک</div>
+      </a>
+
+      <a href="catalog.html?cat=cooling" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">خنک‌کننده موتور</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">رادیاتور، واترپمپ</div>
+      </a>
+
+      <a href="catalog.html?cat=electrical" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">قطعات برقی</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">کوئل، سنسور، شمع</div>
+      </a>
+
+      <a href="catalog.html?cat=clutch" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">کیت کلاچ</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">دیسک و صفحه، بلبرینگ</div>
+      </a>
+
+      <a href="catalog.html?cat=body" class="cursor-pointer bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-orange-400 hover:shadow-lg transition text-center group">
+        <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition shadow-xs">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+        </div>
+        <div class="font-extrabold text-xs text-slate-900">روشنایی و بدنه</div>
+        <div class="text-[11px] text-slate-400 mt-0.5">چراغ جلو، آینه، سپر</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Popular Brands Strip -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
+    <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs">
+      <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 text-center">محبوب‌ترین برندهای مورد تایید خط تولید و بازار</div>
+      <div class="grid grid-cols-3 sm:grid-cols-6 gap-4 text-center font-bold text-xs text-slate-700">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-blue-800 font-extrabold text-sm">ایساکو</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">ISACO خط تولید</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-orange-700 font-extrabold text-sm">کروز</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">Crouse قطعات برقی</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-emerald-800 font-extrabold text-sm">والئو</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">Valeo فرانسه</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-slate-900 font-extrabold text-sm">سایپا یدک</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">Saipa Yadak</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-indigo-900 font-extrabold text-sm">عظام</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">Ezam جلوبندی</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 hover:border-orange-300 transition">
+          <div class="text-red-700 font-extrabold text-sm">تکستار</div>
+          <div class="text-[10px] text-slate-400 font-normal mt-0.5">Textar لنت ترمز</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Interactive Car Anatomy & Blueprint Hotspots Explorer (NEW ADVANCED VISUAL) -->
+  <section id="carExplorerSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="blueprint-grid rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-2xl relative overflow-hidden text-white">
+      
+      <!-- Tech Ambient Glow -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800/80 pb-6 mb-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/15 border border-orange-500/30 text-orange-400 rounded-full text-[11px] font-bold mb-2">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            <span>کاوشگر فنی و بصری شاسی خودرو (Automotive Interactive Hotspots)</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-2">
+            <span>اجزای خودرو را لمس کنید تا قطعه اصلی را ببینید</span>
+            <span class="text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl hidden sm:inline">تعاملی (JS)</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">نمی‌دانید نام فنی قطعه چیست؟ روی نقاط چشمک‌زن روی نقشه اتومبیل کلیک کنید:</p>
+        </div>
+
+        <!-- Vehicle Platform Switcher -->
+        <div class="flex items-center gap-1.5 p-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl">
+          <button onclick="switchExplorerCar('206', this)" class="car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-orange-600 text-white cursor-pointer transition shadow-xs">
+            پژو ۲۰۶ و ۲۰۷
+          </button>
+          <button onclick="switchExplorerCar('pars', this)" class="car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white cursor-pointer transition">
+            پژو پارس و ۴۰۵
+          </button>
+          <button onclick="switchExplorerCar('quick', this)" class="car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white cursor-pointer transition">
+            کوئیک و ساینا
+          </button>
+          <button onclick="switchExplorerCar('samand', this)" class="car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white cursor-pointer transition">
+            سمند و دنا EF7
+          </button>
+        </div>
+      </div>
+
+      <!-- Blueprint Viewport & Live Part Inspector Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Interactive Vector Blueprint Canvas (Cols 7) -->
+        <div class="lg:col-span-7 bg-slate-900/60 border border-slate-800/80 rounded-3xl p-4 sm:p-6 relative">
+          
+          <div class="flex items-center justify-between text-[11px] text-slate-400 border-b border-slate-800/60 pb-3 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span id="blueprintCarLabel" class="font-bold text-white">پلتفرم پژو ۲۰۶ TU5 (نقشه سیستم فنی)</span>
+            </div>
+            <div class="font-mono text-slate-500">CHASSIS MAP // v2.4</div>
+          </div>
+
+          <!-- SVG Vehicle Wireframe Blueprint with 6 Pulse Hotspots -->
+          <div class="relative w-full aspect-[16/9] max-h-[380px] flex items-center justify-center select-none overflow-hidden rounded-2xl bg-gradient-to-b from-slate-950/80 to-slate-900/80 p-2">
+            
+            <svg viewBox="0 0 800 420" class="w-full h-full drop-shadow-[0_0_20px_rgba(59,130,246,0.15)]" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Technical Axis & Grid Lines -->
+              <line x1="40" y1="210" x2="760" y2="210" stroke="#1e293b" stroke-dasharray="4 4" stroke-width="1.5" />
+              <line x1="200" y1="40" x2="200" y2="380" stroke="#1e293b" stroke-dasharray="4 4" stroke-width="1.5" />
+              <line x1="600" y1="40" x2="600" y2="380" stroke="#1e293b" stroke-dasharray="4 4" stroke-width="1.5" />
+              
+              <!-- Car Blueprint Body Silhouette -->
+              <path d="M110 210 C110 160 160 110 240 100 L350 90 L490 90 C560 90 640 130 690 190 L710 210 L690 230 C640 290 560 330 490 330 L350 330 L240 320 C160 310 110 260 110 210 Z" stroke="#38bdf8" stroke-width="2.5" stroke-opacity="0.75" fill="#0f172a" fill-opacity="0.6"/>
+              
+              <!-- Windshield & Glass -->
+              <path d="M340 110 L450 115 C470 140 470 280 450 305 L340 310 C320 280 320 140 340 110 Z" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.5" fill="#1e293b" fill-opacity="0.3"/>
+              
+              <!-- Engine Compartment & Hood -->
+              <rect x="140" y="130" width="160" height="160" rx="12" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3" stroke-opacity="0.6" fill="#f59e0b" fill-opacity="0.05"/>
+              <text x="180" y="215" fill="#f59e0b" font-size="11" font-family="Vazirmatn" opacity="0.6">محفظه موتور TU5</text>
+              
+              <!-- Wheel Wells & Wheels -->
+              <!-- Front Right -->
+              <rect x="200" y="60" width="80" height="34" rx="8" stroke="#64748b" stroke-width="2" fill="#020617"/>
+              <line x1="240" y1="60" x2="240" y2="94" stroke="#f97316" stroke-width="2" />
+              <!-- Front Left -->
+              <rect x="200" y="326" width="80" height="34" rx="8" stroke="#64748b" stroke-width="2" fill="#020617"/>
+              <line x1="240" y1="326" x2="240" y2="360" stroke="#f97316" stroke-width="2" />
+              <!-- Rear Right -->
+              <rect x="560" y="60" width="80" height="34" rx="8" stroke="#64748b" stroke-width="2" fill="#020617"/>
+              <!-- Rear Left -->
+              <rect x="560" y="326" width="80" height="34" rx="8" stroke="#64748b" stroke-width="2" fill="#020617"/>
+              
+              <!-- Exhaust & Transmission Line -->
+              <path d="M300 210 L680 210" stroke="#475569" stroke-width="3"/>
+            </svg>
+
+            <!-- Hotspot 1: Brake Pads & Rotors (Front Right Wheel) -->
+            <div onclick="selectHotspot('brakes')" id="pin-brakes" class="hotspot-pin absolute top-[14%] right-[28%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-orange-500/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-orange-600 to-amber-500 text-white flex items-center justify-center font-bold text-[10px] shadow-lg shadow-orange-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۱
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-orange-400 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                لنت و دیسک ترمز
+              </div>
+            </div>
+
+            <!-- Hotspot 2: Headlights & DRL (Front Nose) -->
+            <div onclick="selectHotspot('lights')" id="pin-lights" class="hotspot-pin absolute top-[44%] right-[14%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-amber-400/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-400 text-slate-950 flex items-center justify-center font-bold text-[10px] shadow-lg shadow-amber-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۲
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-amber-300 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                چراغ جلو کروز
+              </div>
+            </div>
+
+            <!-- Hotspot 3: Cooling / Radiator & Water Pump (Front Engine Grill) -->
+            <div onclick="selectHotspot('cooling')" id="pin-cooling" class="hotspot-pin absolute top-[30%] right-[22%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-cyan-400/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-600 to-blue-500 text-white flex items-center justify-center font-bold text-[10px] shadow-lg shadow-cyan-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۳
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-cyan-300 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                رادیاتور و واترپمپ
+              </div>
+            </div>
+
+            <!-- Hotspot 4: Clutch Kit & Flywheel (Center Transmission) -->
+            <div onclick="selectHotspot('clutch')" id="pin-clutch" class="hotspot-pin absolute top-[44%] right-[42%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-emerald-400/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center font-bold text-[10px] shadow-lg shadow-emerald-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۴
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-emerald-300 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                کیت کلاچ والئو
+              </div>
+            </div>
+
+            <!-- Hotspot 5: Suspension & Shocks (Front Left Wheel) -->
+            <div onclick="selectHotspot('suspension')" id="pin-suspension" class="hotspot-pin absolute top-[75%] right-[28%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-indigo-400/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-500 text-white flex items-center justify-center font-bold text-[10px] shadow-lg shadow-indigo-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۵
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-indigo-300 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                کمک‌فنر و جلوبندی
+              </div>
+            </div>
+
+            <!-- Hotspot 6: Spark Plugs & Sensors (Engine Top) -->
+            <div onclick="selectHotspot('sensors')" id="pin-sensors" class="hotspot-pin absolute top-[60%] right-[22%] cursor-pointer group z-20">
+              <div class="relative flex items-center justify-center">
+                <span class="radar-pulse absolute w-7 h-7 rounded-full bg-rose-400/80"></span>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 text-white flex items-center justify-center font-bold text-[10px] shadow-lg shadow-rose-500/50 border border-white/80 group-hover:scale-125 transition">
+                  ۶
+                </div>
+              </div>
+              <div class="absolute -bottom-6 right-1/2 translate-x-1/2 whitespace-nowrap text-[10px] font-bold bg-slate-950/90 text-rose-300 border border-slate-800 px-2 py-0.5 rounded-md pointer-events-none opacity-0 group-hover:opacity-100 transition shadow-md">
+                سنسورها و شمع موتور
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Hotspot Quick Selector Pills -->
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+            <span class="text-slate-400">نقاط فعال کاوشگر:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="selectHotspot('brakes')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-orange-500/20 text-orange-400 font-bold border border-slate-700/50 transition">۱. لنت ترمز</button>
+              <button onclick="selectHotspot('lights')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-amber-500/20 text-amber-300 font-bold border border-slate-700/50 transition">۲. چراغ جلو</button>
+              <button onclick="selectHotspot('cooling')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-cyan-500/20 text-cyan-300 font-bold border border-slate-700/50 transition">۳. واترپمپ</button>
+              <button onclick="selectHotspot('clutch')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-emerald-500/20 text-emerald-400 font-bold border border-slate-700/50 transition">۴. کیت کلاچ</button>
+              <button onclick="selectHotspot('suspension')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-indigo-500/20 text-indigo-300 font-bold border border-slate-700/50 transition">۵. کمک‌فنر</button>
+              <button onclick="selectHotspot('sensors')" class="cursor-pointer px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-rose-500/20 text-rose-300 font-bold border border-slate-700/50 transition">۶. شمع و سنسور</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dynamic Part Inspection Panel (Cols 5) -->
+        <div class="lg:col-span-5 bg-slate-900/90 border border-slate-700/80 rounded-3xl p-6 shadow-2xl relative">
+          
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+            <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+              مشخصات قطعه انتخاب‌شده
+            </span>
+            <span id="inspectorBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-900/60 text-blue-300 border border-blue-700/50">ایساکو خط تولید</span>
+          </div>
+
+          <!-- Photo with Glassmorphism Overlays -->
+          <div class="h-48 rounded-2xl overflow-hidden relative border border-slate-700/80 mb-4 bg-slate-950">
+            <img id="inspectorImg" src="https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80" alt="لنت ترمز" class="w-full h-full object-cover transition-all duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 right-3 left-3 flex items-center justify-between text-xs">
+              <span id="inspectorCode" class="font-mono text-[11px] bg-slate-900/90 text-slate-300 px-2 py-1 rounded-lg border border-slate-700">OEM: 16401002</span>
+              <span id="inspectorStock" class="font-bold text-[11px] text-emerald-400 bg-emerald-950/80 border border-emerald-700/60 px-2 py-1 rounded-lg">موجود در انبار مرکزی</span>
+            </div>
+          </div>
+
+          <!-- Title & Compatibility -->
+          <div class="space-y-2 mb-4">
+            <h3 id="inspectorTitle" class="text-base font-black text-white leading-snug">
+              لنت ترمز چرخ جلو پژو ۲۰۶ تیپ ۵ (ایساکو شرکتی اصل)
+            </h3>
+            <div id="inspectorCar" class="text-xs text-emerald-400 flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              <span>سازگار با پژو ۲۰۶، ۲۰۷ و رانا (کالیپر بوش)</span>
+            </div>
+            <p id="inspectorDesc" class="text-[11px] text-slate-400 leading-relaxed">
+              فرمولاسیون نیمه‌متالیک بدون آزبست و بدون سوت کشیدن؛ تضمین بالاترین ضریب اصطکاک در ترمزگیری‌های شدید و گرمای بالا.
+            </p>
+          </div>
+
+          <!-- Price & Actions -->
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+            <div>
+              <div class="text-[10px] text-slate-400">قیمت قطعی روز:</div>
+              <div id="inspectorPrice" class="text-xl font-black text-white font-mono">۸۹۰,۰۰۰ <span class="text-xs font-normal text-slate-400 font-sans">تومان</span></div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="openQuickViewFromInspector()" class="cursor-pointer px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition border border-slate-700">
+                پیش‌نمایش سریع
+              </button>
+              <a id="inspectorLink" href="product-detail.html" class="cursor-pointer px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white text-xs font-extrabold transition shadow-lg shadow-orange-500/25">
+                خرید قطعه
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2: Interactive Smart VIN Decoder & Chassis Matcher (KEY VALUE PROP) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    <div class="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xl text-right relative overflow-hidden">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Explainer (Cols 5) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-full text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+            <span>نوآوری اختصاصی پوریا | بدون ۱ مورد مرجوعی</span>
+          </div>
+          
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
+            سامانه هوشمند رمزگشایی شماره شاسی (VIN Decoder)
+          </h2>
+          
+          <p class="text-xs text-slate-600 leading-relaxed">
+            در بازار خودروی ایران، ممکن است دو پژو ۲۰۶ هم‌مدل قطعات موتوری و برقی متفاوتی (فرانسه، کروز، غرب‌استیل یا بوش) داشته باشند! با وارد کردن شماره شاسی، سامانه ما دقیقاً قطعه سازگار با کد خط تولید ماشین شما را شناسایی می‌کند.
+          </p>
+
+          <!-- 3 Quick Preset Clickers for testing -->
+          <div class="space-y-1.5 pt-2">
+            <div class="text-[11px] text-slate-400 font-bold">کلیک کنید تا شبیه‌سازی کارت خودرو تست شود:</div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="testVinPreset('206')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-950 text-slate-700 rounded-xl text-xs font-semibold transition border border-slate-200">
+                🚗 تست کارت پژو ۲۰۶ (تیپ ۵)
+              </button>
+              <button onclick="testVinPreset('quick')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-950 text-slate-700 rounded-xl text-xs font-semibold transition border border-slate-200">
+                🚙 تست کارت کوئیک S (۱۴۰۲)
+              </button>
+              <button onclick="testVinPreset('pars')" class="cursor-pointer px-3 py-1.5 bg-slate-100 hover:bg-orange-100 hover:text-orange-950 text-slate-700 rounded-xl text-xs font-semibold transition border border-slate-200">
+                🚘 تست کارت پارس TU5
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Iranian Smart Vehicle Card Mockup (Cols 7) -->
+        <div class="lg:col-span-7 bg-gradient-to-tr from-slate-900 via-slate-950 to-slate-900 text-white rounded-3xl p-6 sm:p-7 border-2 border-slate-800 shadow-2xl relative">
+          
+          <!-- Holographic Security Stamp Graphic -->
+          <div class="absolute top-6 left-6 w-16 h-16 rounded-full bg-gradient-to-tr from-amber-400/20 via-cyan-400/20 to-emerald-400/20 border border-amber-300/40 flex items-center justify-center text-[9px] font-bold text-amber-300 shadow-inner backdrop-blur-xs select-none">
+            هولوگرام اصالت
+          </div>
+
+          <div class="flex items-center gap-3 mb-5 border-b border-slate-800 pb-4">
+            <div class="w-10 h-10 rounded-xl bg-orange-600/20 text-orange-400 flex items-center justify-center border border-orange-500/30">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            </div>
+            <div>
+              <div class="text-xs font-extrabold text-white">شناسنامه فنی وسیله نقلیه (کارت خودرو)</div>
+              <div class="text-[10px] text-slate-400">سیستم انطباق قطعات با دیتابیس ایران‌خودرو و سایپا</div>
+            </div>
+          </div>
+
+          <!-- VIN Input Form -->
+          <div class="space-y-3 mb-5">
+            <label class="block text-xs font-bold text-slate-300">
+              شماره شناسایی ۱۷ رقمی خودرو (VIN):
+            </label>
+            <div class="flex gap-2">
+              <input type="text" id="vinDecoderInput" value="NAAP03ED4LH198420" oninput="runVinDecoder(this.value)" placeholder="مثال: NAAP03ED4LH198420" maxlength="17" class="flex-1 bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-xs sm:text-sm font-mono tracking-widest text-amber-400 placeholder:text-slate-600 focus:ring-2 focus:ring-orange-500 outline-hidden uppercase shadow-inner">
+              <button onclick="runVinDecoder(document.getElementById('vinDecoderInput').value)" class="cursor-pointer px-5 py-3 bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white rounded-2xl text-xs font-extrabold transition shadow-md shadow-orange-500/30 shrink-0">
+                استعلام شاسی
+              </button>
+            </div>
+          </div>
+
+          <!-- Decoded Results Chips -->
+          <div id="vinResultsBox" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400">نتیجه کدگشایی شاسی:</span>
+              <span id="vinStatusBadge" class="text-[11px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/80 px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>شماره شاسی معتبر و تایید شد</span>
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+                <div class="text-[10px] text-slate-400">خودروساز:</div>
+                <div id="resMake" class="font-bold text-white mt-0.5">ایران‌خودرو (IKCO)</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+                <div class="text-[10px] text-slate-400">مدل و تیپ:</div>
+                <div id="resModel" class="font-bold text-white mt-0.5">پژو ۲۰۶ تیپ ۵</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+                <div class="text-[10px] text-slate-400">پیشرانه:</div>
+                <div id="resEngine" class="font-bold text-amber-400 font-mono mt-0.5">TU5 (1587cc 16V)</div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+                <div class="text-[10px] text-slate-400">سال ساخت:</div>
+                <div id="resYear" class="font-bold text-white mt-0.5">۱۳۹۹ (۲۰۲۰)</div>
+              </div>
+            </div>
+
+            <!-- Matched Guaranteed Parts Strip -->
+            <div class="pt-2 border-t border-slate-800/80 text-[11px] space-y-1.5">
+              <div class="text-slate-400 font-semibold">قطعات اصلی تایید شده برای این شاسی در انبار پوریا:</div>
+              <div id="resPartsList" class="flex flex-wrap gap-2 text-xs">
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-950/50 border border-emerald-800/50 text-emerald-300 font-medium">✓ لنت جلو ایساکو کد 16401002</span>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-950/50 border border-emerald-800/50 text-emerald-300 font-medium">✓ کیت کلاچ والئو 826360</span>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-950/50 border border-emerald-800/50 text-emerald-300 font-medium">✓ سنسور اکسیژن سیم‌کوتاه کروز</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Featured Best-Selling Auto Parts (8 High-Quality Products with 3D Tilt Cards) -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 mb-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+          <span>موجودی تضمین‌شده انبار مرکزی چراغ‌برق</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900">پرفروش‌ترین قطعات مصرفی و فنی بازار</h2>
+      </div>
+      <a href="catalog.html" class="cursor-pointer text-xs font-bold text-orange-600 hover:text-orange-700 flex items-center gap-1 transition">
+        <span>مشاهده همه قطعات کاتالوگ</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </a>
+    </div>
+
+    <!-- 8 Grid Cards with 3D Mouse Tilt & Quick View -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Card 1: Brake Pads 206 -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p1">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80" alt="لنت ترمز جلو ۲۰۶" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-blue-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">ایساکو خط تولید</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+            
+            <!-- Quick View Overlay Button -->
+            <button onclick="openQuickView('p1')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با پژو ۲۰۶، ۲۰۷، رانا</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">لنت ترمز جلو پژو ۲۰۶ تیپ ۵ (ایساکو شرکتی اصل)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد ایساکو: ۱۶۴۰۱۰۰۲</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400 line-through font-mono">۹۵۰,۰۰۰ تومان</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۸۹۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            خرید قطعه
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Headlight Quick Crouse -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p2">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80" alt="چراغ جلو کوئیک کروز" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">کروز خط تولید</span>
+            <span class="absolute top-2.5 left-2.5 bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md">انتخاب جهت</span>
+            
+            <button onclick="openQuickView('p2')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با کوئیک، کوئیک S و R</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">چراغ جلو کوئیک کروز (انتخاب سمت چپ یا راست)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد: CR-QK-04</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400">شروع قیمت از:</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۱,۴۵۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            انتخاب جهت
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Valeo Clutch Kit -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p3">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80" alt="کیت کلاچ والئو" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">والئو سبز فرانسه</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+            
+            <button onclick="openQuickView('p3')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با پارس TU5، ۲۰۶ تیپ ۵</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">کیت کلاچ دیسک و صفحه پژو پارس TU5 والئو اصل</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد فنی: 826360-VAL</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400 line-through font-mono">۵,۱۰۰,۰۰۰ تومان</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۴,۸۵۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            خرید قطعه
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Water Pump Samand EF7 -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p4">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80" alt="واترپمپ سمند" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">ایساکو شرکتی</span>
+            <span class="absolute top-2.5 left-2.5 bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md">نوسان لحظه‌ای</span>
+            
+            <button onclick="openQuickView('p4')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با سمند EF7، دنا پلاس</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">واتر پمپ سمند موتور ملی EF7 ایساکو اصل</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد پارت‌نامبر: WP-EF7-88</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-amber-700 font-bold">استعلام نرخ روز:</div>
+            <div class="font-black text-xs text-amber-800">تماس تلفنی / واتساپ</div>
+          </div>
+          <a href="https://wa.me/989121111111?text=سلام+قیمت+واترپمپ+EF7+رو+میخواستم" target="_blank" class="cursor-pointer px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+            <span>استعلام سریع</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5: Shock Absorber Pride Ezam -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p5">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80" alt="کمک فنر جلو پراید" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-indigo-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">عظام شرکتی</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">موجود</span>
+            
+            <button onclick="openQuickView('p5')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با پراید ۱۱۱، ۱۳۱، ۱۳۲ و وانت</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">کمک فنر جلو پراید (عظام اصل خط تولید)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد: EZ-PR-110</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400">قیمت قطعی:</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۱,۱۵۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            خرید قطعه
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 6: Slotted Brake Rotors Textar -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p6">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=700&auto=format&fit=crop&q=80" alt="دیسک ترمز تکستار" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-red-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">تکستار آلمان</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">خنک‌شونده</span>
+            
+            <button onclick="openQuickView('p6')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با پژو ۲۰۶ تیپ ۵، ۲۰۷ و رانا</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">دیسک چرخ جلو خنک‌شونده تکستار (دست ۲ عددی)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد: TX-206-ROTOR</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400 line-through font-mono">۲,۲۵۰,۰۰۰ تومان</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۲,۰۵۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            خرید قطعه
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 7: Tail Light 207 Plus Crouse -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p7">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&auto=format&fit=crop&q=80" alt="چراغ عقب ۲۰۷ کروز" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">کروز اصل</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">طرح نئون دودی</span>
+            
+            <button onclick="openQuickView('p7')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با پژو ۲۰۷ و تبدیل ۲۰۶ به ۲۰۷</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">چراغ خطر عقب پژو ۲۰۷ نئون‌دار کروز (سمت چپ/راست)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد: CR-207-REAR</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400">قیمت واحد:</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۱,۳۸۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            انتخاب جهت
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 8: Denso Iridium Spark Plugs -->
+      <div class="tilt-card bg-white rounded-3xl border border-slate-200/90 p-4 shadow-sm hover:shadow-2xl hover:border-orange-400 transition-all duration-200 flex flex-col justify-between group relative" data-product-id="p8">
+        <div>
+          <div class="h-48 rounded-2xl mb-3.5 overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80" alt="شمع سوزنی دنسو" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 right-2.5 bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">دنسو ژاپن اصل</span>
+            <span class="absolute top-2.5 left-2.5 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md">طول عمر ۱۰۰ هزار km</span>
+            
+            <button onclick="openQuickView('p8')" class="cursor-pointer absolute inset-x-4 bottom-3 py-2 bg-slate-950/80 hover:bg-slate-950 text-white text-xs font-bold rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center gap-1.5 shadow-lg">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <span>پیش‌نمایش سریع</span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-emerald-700 font-bold mb-1 flex items-center gap-1">
+            <span>✓ سازگار با کلیه موتورهای TU5، EF7 و M15</span>
+          </div>
+          <h3 class="font-extrabold text-xs sm:text-sm text-slate-900 leading-snug">شمع موتور سوزنی ایریدیوم دنسو ژاپن (پک ۴ تایی)</h3>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">کد: IK20-DENSO</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-400 line-through font-mono">۱,۶۰۰,۰۰۰ تومان</div>
+            <div class="font-black text-sm text-slate-900 font-mono">۱,۴۲۰,۰۰۰ <span class="text-[11px] font-normal font-sans">تومان</span></div>
+          </div>
+          <a href="product-detail.html" class="cursor-pointer px-4 py-2 bg-slate-900 hover:bg-orange-600 active:bg-orange-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
+            خرید قطعه
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Quick View Modal (JS Powered) -->
+  <div id="quickViewModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 relative animate-slide-up text-right">
+      
+      <button onclick="closeQuickView()" class="cursor-pointer absolute top-4 left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold transition">
+        ✕
+      </button>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+        <!-- Modal Gallery -->
+        <div class="space-y-3">
+          <div class="h-60 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative">
+            <img id="modalProductImg" src="" alt="قطعه" class="w-full h-full object-cover">
+            <span id="modalProductBadge" class="absolute top-2.5 right-2.5 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md"></span>
+          </div>
+          <div class="flex items-center gap-2 text-[11px] text-slate-400 font-mono">
+            <span>کد انبار: <strong id="modalProductCode" class="text-slate-800"></strong></span>
+            <span>•</span>
+            <span class="text-emerald-600 font-sans font-bold">تضمین سلامت فیزیکی</span>
+          </div>
+        </div>
+
+        <!-- Modal Details -->
+        <div class="space-y-4">
+          <div>
+            <span id="modalProductCar" class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-md inline-block mb-1.5"></span>
+            <h3 id="modalProductTitle" class="text-base font-black text-slate-900 leading-snug"></h3>
+          </div>
+
+          <!-- Position Variant Choice if applicable -->
+          <div id="modalVariantBox" class="space-y-1.5 pt-1">
+            <label class="block text-xs font-bold text-slate-700">جهت مورد نیاز:</label>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <button onclick="selectModalVariant('right')" id="modalBtnRight" class="cursor-pointer p-2 rounded-xl border-2 border-orange-500 bg-orange-50 text-orange-950 font-bold text-center">سمت راست</button>
+              <button onclick="selectModalVariant('left')" id="modalBtnLeft" class="cursor-pointer p-2 rounded-xl border border-slate-200 text-slate-700 font-medium text-center">سمت چپ</button>
+              <button onclick="selectModalVariant('pair')" id="modalBtnPair" class="cursor-pointer p-2 rounded-xl border border-slate-200 text-slate-700 font-medium text-center">یک جفت</button>
+            </div>
+          </div>
+
+          <!-- Quantity Stepper & Price -->
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+            <div class="space-y-0.5">
+              <div class="text-[10px] text-slate-400">قیمت واحد:</div>
+              <div id="modalProductPrice" class="text-lg font-black text-slate-900 font-mono"></div>
+            </div>
+
+            <div class="flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+              <button onclick="changeModalQty(-1)" class="w-6 h-6 rounded-lg bg-white font-bold text-xs flex items-center justify-center cursor-pointer shadow-2xs">-</button>
+              <span id="modalQtyDisplay" class="font-mono font-bold text-xs px-2">۱</span>
+              <button onclick="changeModalQty(1)" class="w-6 h-6 rounded-lg bg-white font-bold text-xs flex items-center justify-center cursor-pointer shadow-2xs">+</button>
+            </div>
+          </div>
+
+          <!-- Modal Add to Cart Button -->
+          <div class="space-y-2 pt-2">
+            <button onclick="addModalToCart()" class="cursor-pointer w-full py-3 bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white rounded-xl text-xs font-bold transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+              <span>افزودن به سبد خرید و ثبت نهایی</span>
+            </button>
+            <div class="text-[10px] text-center text-slate-400">ارسال اکسپرس در کمتر از ۲ ساعت با اسنپ‌باکس تهران</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Live Social Proof Ticker (JS Powered - Digikala & MrYadaki Style) -->
+  <div id="livePurchaseToast" class="fixed bottom-6 right-6 z-50 bg-slate-950/95 text-white p-3.5 rounded-2xl shadow-2xl border border-slate-800 flex items-center gap-3.5 max-w-sm transition-all duration-300 transform translate-y-24 opacity-0">
+    <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center shrink-0 border border-orange-500/30">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+    </div>
+    <div class="text-xs space-y-0.5 text-right">
+      <div class="text-[10px] text-slate-400 flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span id="toastTime">همین الان</span>
+      </div>
+      <div id="toastContent" class="font-bold text-white text-[11px] truncate">رضا از شیراز «لنت ترمز جلو ۲۰۶» خرید</div>
+      <div class="text-[10px] text-emerald-400 font-medium">ارسال با تیپاکس پس‌کرایه</div>
+    </div>
+    <button onclick="dismissToast()" class="text-slate-500 hover:text-white text-xs mr-2 cursor-pointer">✕</button>
+  </div>
+
+  <!-- Floating WhatsApp Quick Button -->
+  <a href="https://wa.me/989121111111?text=سلام+مشاوره+خرید+قطعه+میخواستم" target="_blank" class="cursor-pointer fixed bottom-6 left-6 z-50 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-2.5 transition-all hover:scale-105 border border-emerald-400/30">
+    <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+    <span class="text-xs font-bold">مشاوره فوری واتساپ</span>
+  </a>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 text-xs py-12 mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10 text-right">
+      
+      <div class="space-y-3 md:col-span-2">
+        <div class="flex items-center gap-2.5 text-white font-extrabold text-lg">
+          <div class="w-8 h-8 rounded-xl bg-orange-600 flex items-center justify-center text-white text-sm">یدک</div>
+          <span>فروشگاه آنلاین لوازم یدکی یدک‌پرو (پوریا)</span>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed max-w-lg">
+          یدک‌پرو مرجع تخصصی تامین و توزیع مستقیم لوازم یدکی خودروهای ایران خودرو و سایپا در تهران و سراسر کشور است. تمامی قطعات با ضمانت اصالت فیزیکی، کد اختصاصی ایساکو و تایید شماره شاسی (VIN) توسط کارشناسان انبار عرضه می‌گردند.
+        </p>
+        <div class="text-slate-400 text-xs pt-1">
+          دفتر مرکزی و انبار: تهران، بازار چراغ برق (میدان امام خمینی)، خیابان ملت | تلفن: ۰۲۱-۸۸۸۸۸۸۸۸
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="text-white font-bold text-sm mb-3">دسترسی سریع</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="catalog.html?cat=brakes" class="hover:text-orange-400 transition">لوازم سیستم ترمز (لنت و دیسک)</a></li>
+          <li><a href="catalog.html?cat=suspension" class="hover:text-orange-400 transition">قطعات جلوبندی و کمک‌فنر</a></li>
+          <li><a href="catalog.html?cat=clutch" class="hover:text-orange-400 transition">کیت کلاچ و دیسک و صفحه والئو</a></li>
+          <li><a href="catalog.html?cat=cooling" class="hover:text-orange-400 transition">رادیاتور و واترپمپ شرکتی</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-2">
+        <div class="text-white font-bold text-sm mb-3">خدمات مشتریان</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="../admin/index.html" class="hover:text-orange-400 transition font-bold text-amber-400">ورود به پنل ادمین (پوریا)</a></li>
+          <li><a href="product-detail.html" class="hover:text-orange-400 transition">راهنمای استعلام با شماره شاسی</a></li>
+          <li><a href="tel:02188888888" class="hover:text-orange-400 transition">مشاوره فنی پیش از خرید</a></li>
+          <li><a href="https://wa.me/989121111111" class="hover:text-orange-400 transition text-emerald-400">پشتیبانی واتساپ (ارسال پیام)</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 border-t border-slate-900 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-500">
+      <div>تمامی حقوق این وب‌سایت برای فروشگاه یدک‌پرو محفوظ است. طراحی و توسعه توسط دانته.</div>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>پروتوتایپ فاز اول (MVP) با پشته مدرن جنگو + نکست‌جی‌اس</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Advanced JavaScript Interactions -->
+  <script>
+    // 1. Live Sample Products Data for Autocomplete Search
+    const sampleProducts = [
+      { name: 'لنت ترمز جلو پژو ۲۰۶ تیپ ۵ ایساکو اصل', code: '16401002', price: '۸۹۰,۰۰۰ تومان', car: 'پژو ۲۰۶ و ۲۰۷', img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=100&auto=format&fit=crop&q=80' },
+      { name: 'چراغ جلو کوئیک کروز (سمت چپ/راست)', code: 'CR-QK-04', price: '۱,۴۵۰,۰۰۰ تومان', car: 'کوئیک و کوئیک S', img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=100&auto=format&fit=crop&q=80' },
+      { name: 'کیت کلاچ دیسک و صفحه پژو پارس TU5 والئو', code: '826360-VAL', price: '۴,۸۵۰,۰۰۰ تومان', car: 'پژو پارس TU5', img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=100&auto=format&fit=crop&q=80' },
+      { name: 'واتر پمپ سمند موتور ملی EF7 ایساکو', code: 'WP-EF7-88', price: 'استعلام ساعتی', car: 'سمند و دنا', img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=100&auto=format&fit=crop&q=80' },
+      { name: 'کمک فنر جلو پراید عظام شرکتی', code: 'EZ-PR-110', price: '۱,۱۵۰,۰۰۰ تومان', car: 'پراید ۱۳۱ و ۱۱۱', img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=100&auto=format&fit=crop&q=80' },
+      { name: 'سنسور اکسیژن ۲۰۶ تیپ ۲ سیم کوتاه کروز', code: 'OX-CR-206', price: '۱,۷۵۰,۰۰۰ تومان', car: 'پژو ۲۰۶ تیپ ۲', img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=100&auto=format&fit=crop&q=80' }
+    ];
+
+    function handleSearchInput(query) {
+      const q = query.trim().toLowerCase();
+      const dropdown = document.getElementById('searchDropdown');
+      const list = document.getElementById('searchResultsList');
+
+      if (q.length === 0) {
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      const filtered = sampleProducts.filter(p => 
+        p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.car.toLowerCase().includes(q)
+      );
+
+      list.innerHTML = '';
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="p-4 text-xs text-slate-400 text-center">هیچ قطعه‌ای با این مشخصات یافت نشد.</div>`;
+      } else {
+        filtered.forEach(item => {
+          const div = document.createElement('a');
+          div.href = 'product-detail.html';
+          div.className = 'flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer transition';
+          div.innerHTML = `
+            <img src="${item.img}" class="w-10 h-10 rounded-lg object-cover border border-slate-200">
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-slate-900 truncate">${item.name}</div>
+              <div class="text-[10px] text-slate-400 font-mono">کد: ${item.code} | سازگار با ${item.car}</div>
+            </div>
+            <div class="text-xs font-bold text-orange-600 font-mono shrink-0">${item.price}</div>
+          `;
+          list.appendChild(div);
+        });
+      }
+      dropdown.classList.remove('hidden');
+    }
+
+    function handleSearchFocus() {
+      const q = document.getElementById('mainSearchInput').value.trim();
+      if (q.length > 0) handleSearchInput(q);
+    }
+
+    // Hand the query over to the catalog page (?q= is parsed there by initFromUrl)
+    function submitMainSearch() {
+      const q = document.getElementById('mainSearchInput').value.trim();
+      window.location.href = q ? `catalog.html?q=${encodeURIComponent(q)}` : 'catalog.html';
+    }
+
+    // Close search dropdown on click outside
+    document.addEventListener('click', (e) => {
+      const searchBox = document.getElementById('mainSearchInput');
+      const dropdown = document.getElementById('searchDropdown');
+      if (!searchBox.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    // 2. Vehicle Selector Dynamic Logic
+    const modelsByMake = {
+      ikco: [
+        { id: '206', name: 'پژو ۲۰۶' },
+        { id: 'pars', name: 'پژو پارس' },
+        { id: 'samand', name: 'سمند' },
+        { id: 'dena', name: 'دنا / دنا پلاس' },
+        { id: 'tara', name: 'تارا' }
+      ],
+      saipa: [
+        { id: 'pride', name: 'پراید' },
+        { id: 'tiba', name: 'تیبا' },
+        { id: 'saina', name: 'ساینا' },
+        { id: 'quick', name: 'کوئیک' },
+        { id: 'shahin', name: 'شاهین' }
+      ]
+    };
+
+    function onMakeChange() {
+      const make = document.getElementById('carMake').value;
+      const modelSelect = document.getElementById('carModel');
+      modelSelect.innerHTML = '';
+      modelsByMake[make].forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.name;
+        modelSelect.appendChild(opt);
+      });
+      onModelChange();
+    }
+
+    function onModelChange() {
+      const model = document.getElementById('carModel').value;
+      const trimSelect = document.getElementById('carTrim');
+      trimSelect.innerHTML = '';
+      
+      let trims = ['معمولی / فابریک', 'موتور ارتقایافته'];
+      if (model === '206') trims = ['تیپ ۵ (موتور TU5)', 'تیپ ۲ (موتور TU3)', 'صندوقدار SD'];
+      if (model === 'pars') trims = ['پارس TU5', 'پارس سال XU7', 'پارس ELX'];
+      if (model === 'samand') trims = ['سمند موتور ملی EF7', 'سمند LX'];
+      if (model === 'quick') trims = ['کوئیک معمولی', 'کوئیک S', 'کوئیک R'];
+      
+      trims.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.textContent = t;
+        trimSelect.appendChild(opt);
+      });
+      updateCompatibleCounter();
+    }
+
+    function updateCompatibleCounter() {
+      const model = document.getElementById('carModel').value;
+      let count = 148;
+      if (model === '206') count = 186;
+      if (model === 'quick') count = 114;
+      if (model === 'pars') count = 162;
+      if (model === 'samand') count = 128;
+
+      const counter = document.getElementById('counterText');
+      counter.style.opacity = '0';
+      setTimeout(() => {
+        counter.textContent = `${count} قطعه سازگار آماده ارسال فوری`;
+        counter.style.opacity = '1';
+      }, 150);
+    }
+
+    function setQuickCar(make, model, trim) {
+      document.getElementById('carMake').value = make;
+      onMakeChange();
+      document.getElementById('carModel').value = model;
+      onModelChange();
+    }
+
+    function goToFilteredCatalog() {
+      const make = document.getElementById('carMake').value;
+      const model = document.getElementById('carModel').value;
+      const trim = document.getElementById('carTrim').value;
+      window.location.href = `catalog.html?make=${make}&model=${model}&trim=${encodeURIComponent(trim)}`;
+    }
+
+    // 3. Live Social Proof Toast Ticker (Realistic Iranian buyers)
+    const recentPurchases = [
+      { buyer: 'رضا از شیراز', item: '«لنت ترمز جلو ۲۰۶ ایساکو»', time: 'همین الان' },
+      { buyer: 'امیرحسین از تهران (منطقه سعادت‌آباد)', item: '«چراغ جلو کوئیک کروز»', time: '۲ دقیقه پیش' },
+      { buyer: 'مهدی از اصفهان', item: '«کیت کلاچ والئو پارس TU5»', time: '۶ دقیقه پیش' },
+      { buyer: 'حسین از تبریز', item: '«کمک فنر جلو پراید عظام»', time: '۹ دقیقه پیش' },
+      { buyer: 'علیرضا از کرج', item: '«سنسور اکسیژن ۲۰۶ کروز»', time: '۱۴ دقیقه پیش' }
+    ];
+
+    let toastIndex = 0;
+    function triggerNextToast() {
+      const p = recentPurchases[toastIndex % recentPurchases.length];
+      toastIndex++;
+      
+      const toast = document.getElementById('livePurchaseToast');
+      document.getElementById('toastContent').textContent = `${p.buyer} ${p.item} خرید`;
+      document.getElementById('toastTime').textContent = p.time;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 4500);
+    }
+
+    function dismissToast() {
+      document.getElementById('livePurchaseToast').classList.add('translate-y-24', 'opacity-0');
+    }
+
+    // Trigger first toast after 3 seconds, then every 9.5 seconds
+    setTimeout(triggerNextToast, 3000);
+    setInterval(triggerNextToast, 9500);
+
+    // 4. Interactive Car Anatomy & Hotspots Data & Logic
+    const hotspotsData = {
+      '206': {
+        carName: 'پلتفرم پژو ۲۰۶ و ۲۰۷ (موتور TU5)',
+        parts: {
+          brakes: {
+            title: 'لنت ترمز جلو پژو ۲۰۶ تیپ ۵ (ایساکو اصل)',
+            code: 'OEM: 16401002',
+            badge: 'ایساکو خط تولید',
+            car: 'سازگار با پژو ۲۰۶، ۲۰۷ و رانا (کالیپر بوش)',
+            desc: 'فرمولاسیون نیمه‌متالیک بدون آزبست و بدون سوت کشیدن؛ تضمین بالاترین ضریب اصطکاک در ترمزگیری‌های شدید.',
+            price: '۸۹۰,۰۰۰ تومان',
+            stock: 'موجود در انبار مرکزی',
+            img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          lights: {
+            title: 'چراغ جلو پژو ۲۰۶ شفاف کروز اصل (موتوردار)',
+            code: 'OEM: CR-206-HD',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با پژو ۲۰۶ تیپ ۲ و ۵، ۲۰۶ SD',
+            desc: 'طلق شفاف ضدخش پلی‌کربنات با موتور فابریک تنظیم زاویه نور؛ بدون ایجاد کدری در برابر آفتاب شدید.',
+            price: '۱,۵۸۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          cooling: {
+            title: 'رادیاتور آب دولول پژو ۲۰۶ تیپ ۵ (ایران رادیاتور)',
+            code: 'OEM: IR-206-RAD',
+            badge: 'ایران رادیاتور اصل',
+            car: 'سازگار با کلیه موتورهای TU5 (۲۰۶ و ۲۰۷)',
+            desc: 'آلومینیومی دولول با بالاترین ظرفیت دفع حرارت موتور در ترافیک تابستانی؛ لوله‌های تقویت‌شده ضدجرم.',
+            price: '۱,۹۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=cooling'
+          },
+          clutch: {
+            title: 'کیت کلاچ دیسک و صفحه والئو سبز اصل فرانسه',
+            code: 'OEM: 826360-VAL',
+            badge: 'والئو فرانسه اصل',
+            car: 'سازگار با پژو ۲۰۶ تیپ ۵، پارس TU5، رانا',
+            desc: 'کلاچ فوق‌العاده نرم با شتاب اولیه بالا؛ دوام کلاچ تا بیش از ۹۰ هزار کیلومتر با بلبرینگ تقویت‌شده.',
+            price: '۴,۸۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          suspension: {
+            title: 'کمک‌فنر جلو پژو ۲۰۶ گازی-روغنی عظام',
+            code: 'OEM: EZ-206-STRUT',
+            badge: 'عظام شرکتی',
+            car: 'سازگار با انواع ۲۰۶ هاچ‌بک و صندوقدار',
+            desc: 'سواری نرم و جذب کامل ارتعاشات دست‌اندازهای خیابانی با ضمانت ۱۲ ماهه تعویض بدون قیدوشرط.',
+            price: '۱,۶۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=suspension'
+          },
+          sensors: {
+            title: 'سنسور اکسیژن سیم‌کوتاه پژو ۲۰۶ کروز اصل',
+            code: 'OEM: OX-CR-206',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با پژو ۲۰۶ تیپ ۲ و ۵، رانا',
+            desc: 'تنظیم دقیق نسبت سوخت و هوا، رفع ریپ زدن و کاهش فوری مصرف سوخت در دیاگ ایسیو.',
+            price: '۱,۷۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=electrical'
+          }
+        }
+      },
+      'pars': {
+        carName: 'پلتفرم پژو پارس و ۴۰۵ (موتور TU5 و XU7)',
+        parts: {
+          brakes: {
+            title: 'لنت ترمز جلو پارس سال و TU5 تکستار اصل',
+            code: 'OEM: TX-PARS-FR',
+            badge: 'تکستار فرانسه',
+            car: 'سازگار با پژو پارس، ۴۰۵ و سمند',
+            desc: 'ترمزگیری پرقدرت و یکنواخت در سرعت‌های بالای اتوبان؛ لنت بدون سر و صدا.',
+            price: '۹۹۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          lights: {
+            title: 'چراغ جلو کریستالی پژو پارس کروز اصل',
+            code: 'OEM: CR-PARS-CRYS',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با پژو پارس معمولی و ELX',
+            desc: 'طرح شفاف کریستالی با پرتاب نور استاندارد خط تولید؛ همراه با لامپ‌های فابریک.',
+            price: '۱,۳۲۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          cooling: {
+            title: 'رادیاتور آب پژو ۴۰۵ و پارس موتور XU7 دولول',
+            code: 'OEM: IR-405-RAD',
+            badge: 'ایران رادیاتور',
+            car: 'سازگار با پژو ۴۰۵، پارس و سمند XU7',
+            desc: 'خنک‌کاری فوق‌العاده برای محافظت از واشر سرسیلندر موتور XU7 در برابر حرارت بالا.',
+            price: '۲,۱۰۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=cooling'
+          },
+          clutch: {
+            title: 'کیت کلاچ دیسک و صفحه پارس TU5 والئو اصل',
+            code: 'OEM: 826360-VAL',
+            badge: 'والئو فرانسه',
+            car: 'سازگار با پارس TU5 و ۲۰۶ تیپ ۵',
+            desc: 'شتاب اولیه چشمگیر و نرمی بی‌نظیر پدال کلاچ در ترافیک‌های شهری سنگین.',
+            price: '۴,۸۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          suspension: {
+            title: 'جعبه فرمان کامل هیدرولیک پژو پارس ماندو اصل',
+            code: 'OEM: MND-PARS-STR',
+            badge: 'ماندو خط تولید',
+            car: 'سازگار با پژو پارس و ۴۰۵',
+            desc: 'فرمان‌پذیری نرم، بدون لقّی و بدون نشتی روغن هیدرولیک با آب‌بندی شرکتی.',
+            price: '۴,۳۰۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=suspension'
+          },
+          sensors: {
+            title: 'کوئل دوبل پژو پارس موتور XU7 بوجیکورد اصل',
+            code: 'OEM: BJC-405-COIL',
+            badge: 'بوجیکورد فرانسه',
+            car: 'سازگار با پژو پارس، ۴۰۵ و سمند',
+            desc: 'جرقه زنی یکنواخت سر شمع‌ها، رفع ناک موتور و تضمین شتاب استاندارد.',
+            price: '۱,۴۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=electrical'
+          }
+        }
+      },
+      'quick': {
+        carName: 'پلتفرم کوئیک و ساینا (پلتفرم سایپا X200)',
+        parts: {
+          brakes: {
+            title: 'لنت ترمز جلو کوئیک و ساینا سایپایدک اصل',
+            code: 'OEM: SP-QK-BRAKE',
+            badge: 'سایپا یدک اصل',
+            car: 'سازگار با کوئیک، ساینا و تیبا',
+            desc: 'لنت استاندارد خط تولید سایپا بدون گرد و غبار سیاه و بدون خط انداختن روی دیسک.',
+            price: '۶۲۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          lights: {
+            title: 'چراغ جلو کوئیک و کوئیک S کروز اصل خط تولید',
+            code: 'OEM: CR-QK-04',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با کوئیک معمولی، S و R',
+            desc: 'مجهز به موتور تنظیم زاویه نور، طلق شفاف مقاوم در برابر اشعه فرابنفش.',
+            price: '۱,۴۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          cooling: {
+            title: 'واترپمپ موتور M15 کوئیک و ساینا عظام اصل',
+            code: 'OEM: EZ-M15-WP',
+            badge: 'عظام شرکتی',
+            car: 'سازگار با انواع کوئیک، ساینا، تیبا',
+            desc: 'پره‌های چدنی ضدسایش و فیبر و فنر سرامیکی با آب‌بندی کامل بدون نشتی.',
+            price: '۸۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=cooling'
+          },
+          clutch: {
+            title: 'کیت کلاچ ۲۰۰ میلی‌متری کوئیک و تیبا سکو کره اصل',
+            code: 'OEM: SEC-QK-200',
+            badge: 'سکو کره اصل',
+            car: 'سازگار با کوئیک، ساینا و تیبا',
+            desc: 'شناخته‌شده‌ترین برند کلاچ برای رفع لرزش شروع حرکت خودروهای سایپا.',
+            price: '۲,۹۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          suspension: {
+            title: 'کمک‌فنر جلو کوئیک و ساینا فراورده‌های عظام',
+            code: 'OEM: EZ-QK-SHOCK',
+            badge: 'عظام شرکتی',
+            car: 'سازگار با کوئیک، ساینا و تیبا',
+            desc: 'سواری نرم و آرام در دست‌اندازهای تیز شهری با ضمانت رسمی تعویض.',
+            price: '۱,۲۸۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=suspension'
+          },
+          sensors: {
+            title: 'سنسور کیلومتر و مپ سنسور کوئیک کروز',
+            code: 'OEM: MAP-CR-QK',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با کوئیک و ساینا یورو ۴ و ۵',
+            desc: 'تنظیم فشار هوای منیفولد ورودی و رفع خطای دور آرام و نوسان دور موتور.',
+            price: '۷۹۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=electrical'
+          }
+        }
+      },
+      'samand': {
+        carName: 'پلتفرم سمند، دنا و سورن (موتور ملی EF7)',
+        parts: {
+          brakes: {
+            title: 'لنت ترمز جلو دنا پلاس و سمند EF7 تکستار اصل',
+            code: 'OEM: TX-EF7-FR',
+            badge: 'تکستار فرانسه',
+            car: 'سازگار با سمند EF7، دنا، دنا پلاس و سورن',
+            desc: 'قدرت توقف بالا برای خودروهای سنگین‌تر پلتفرم دنا بدون تضعیف در داغی دیسک.',
+            price: '۱,۱۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          lights: {
+            title: 'چراغ جلو نئون‌دار دنا پلاس کروز اصل',
+            code: 'OEM: CR-DENA-PLUS',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با دنا و دنا پلاس توربو',
+            desc: 'دارای دی‌لایت (چراغ روشنایی روز) فابریک و لنز متمرکزکننده پرتاب نور در شب.',
+            price: '۲,۸۵۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          cooling: {
+            title: 'واتر پمپ سمند موتور ملی EF7 ایساکو اصل',
+            code: 'OEM: WP-EF7-88',
+            badge: 'ایساکو شرکتی',
+            car: 'سازگار با سمند EF7، دنا و دنا پلاس',
+            desc: 'گردش قدرتمند مایع خنک‌کننده در موتورهای گرم‌پایه EF7 با فیبر و فنر وارداتی.',
+            price: 'استعلام روز',
+            stock: 'موجود (نوسان ساعتی)',
+            img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80',
+            link: 'https://wa.me/989121111111'
+          },
+          clutch: {
+            title: 'کیت کلاچ دیسک و صفحه دنا پلاس والئو اصل',
+            code: 'OEM: 826818-VAL',
+            badge: 'والئو فرانسه',
+            car: 'سازگار با سمند EF7، دنا پلاس و سورن پلاس',
+            desc: 'صفحه کلاچ پری‌دمپر دوبل برای مهار گشتاور بالای موتورهای ۱۶ سوپاپ EF7.',
+            price: '۵,۴۰۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80',
+            link: 'product-detail.html'
+          },
+          suspension: {
+            title: 'سیبک طبق و موج‌گیر سمند و دنا امیرنیا اصل',
+            code: 'OEM: AMIR-SM-ARM',
+            badge: 'امیرنیا اصل',
+            car: 'سازگار با سمند، دنا و سورن',
+            desc: 'دارای گواهینامه استاندارد ملی با پولیش صنعتی گوی‌ها بدون صدای تق‌تق در دست‌انداز.',
+            price: '۹۲۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=suspension'
+          },
+          sensors: {
+            title: 'سنسور میل‌سوپاپ و دور موتور EF7 کروز اصل',
+            code: 'OEM: CAM-EF7-CR',
+            badge: 'کروز خط تولید',
+            car: 'سازگار با موتور ملی EF7 بنزینی و دوگانه‌سوز',
+            desc: 'رفع مشکل بد روشن شدن و خاموش شدن ناگهانی خودرو در چراغ قرمزها.',
+            price: '۶۸۰,۰۰۰ تومان',
+            stock: 'موجود در انبار',
+            img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80',
+            link: 'catalog.html?cat=electrical'
+          }
+        }
+      }
+    };
+
+    let activeExplorerCar = '206';
+    let activeHotspotKey = 'brakes';
+
+    function switchExplorerCar(carId, btn) {
+      activeExplorerCar = carId;
+      document.querySelectorAll('.car-tab-btn').forEach(b => {
+        b.className = 'car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white cursor-pointer transition';
+      });
+      btn.className = 'car-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-orange-600 text-white cursor-pointer transition shadow-xs';
+
+      const data = hotspotsData[carId];
+      document.getElementById('blueprintCarLabel').textContent = data.carName;
+      selectHotspot(activeHotspotKey);
+    }
+
+    function selectHotspot(partKey) {
+      activeHotspotKey = partKey;
+      const part = hotspotsData[activeExplorerCar].parts[partKey];
+
+      // Update Inspector UI
+      document.getElementById('inspectorTitle').textContent = part.title;
+      document.getElementById('inspectorCode').textContent = part.code;
+      document.getElementById('inspectorBadge').textContent = part.badge;
+      document.getElementById('inspectorCar').innerHTML = `
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+        <span>${part.car}</span>
+      `;
+      document.getElementById('inspectorDesc').textContent = part.desc;
+      document.getElementById('inspectorPrice').innerHTML = `${part.price} <span class="text-xs font-normal text-slate-400 font-sans">تومان</span>`;
+      document.getElementById('inspectorStock').textContent = part.stock;
+      document.getElementById('inspectorImg').src = part.img;
+      document.getElementById('inspectorLink').href = part.link;
+    }
+
+    function openQuickViewFromInspector() {
+      const part = hotspotsData[activeExplorerCar].parts[activeHotspotKey];
+      document.getElementById('modalProductTitle').textContent = part.title;
+      document.getElementById('modalProductImg').src = part.img;
+      document.getElementById('modalProductBadge').textContent = part.badge;
+      document.getElementById('modalProductCode').textContent = part.code;
+      document.getElementById('modalProductCar').textContent = part.car;
+      document.getElementById('modalProductPrice').textContent = part.price;
+      document.getElementById('modalQtyDisplay').textContent = '۱';
+      modalQty = 1;
+      // Reset variant box for this part — lights & suspension are side-specific (راست/چپ/جفت)
+      const hasVariants = activeHotspotKey === 'lights' || activeHotspotKey === 'suspension';
+      document.getElementById('modalVariantBox').style.display = hasVariants ? 'block' : 'none';
+      document.getElementById('quickViewModal').classList.remove('hidden');
+    }
+
+    // 5. Smart VIN Decoder Real-time Logic
+    const vinPresets = {
+      '206': {
+        vin: 'NAAP03ED4LH198420',
+        make: 'ایران‌خودرو (IKCO)',
+        model: 'پژو ۲۰۶ تیپ ۵ هاچ‌بک',
+        engine: 'TU5 (1587cc 16V)',
+        year: '۱۳۹۹ (۲۰۲۰)',
+        parts: [
+          '✓ لنت جلو ایساکو کد 16401002',
+          '✓ کیت کلاچ والئو 826360',
+          '✓ سنسور اکسیژن سیم‌کوتاه کروز'
+        ]
+      },
+      'quick': {
+        vin: 'NAS411100P1452098',
+        make: 'سایپا (Saipa)',
+        model: 'کوئیک S فیس‌لیفت',
+        engine: 'M15 (1497cc Euro 5)',
+        year: '۱۴۰۲ (۲۰۲۳)',
+        parts: [
+          '✓ چراغ جلو کوئیک کروز CR-QK-04',
+          '✓ کیت کلاچ ۲۰۰ میلی‌متری سکو',
+          '✓ واترپمپ موتور M15 عظام'
+        ]
+      },
+      'pars': {
+        vin: 'NAAB01EC5MJ884102',
+        make: 'ایران‌خودرو (IKCO)',
+        model: 'پژو پارس TU5 کلاس ۱۵',
+        engine: 'TU5 (1587cc 16V Bosch)',
+        year: '۱۴۰۰ (۲۰۲۱)',
+        parts: [
+          '✓ کیت کلاچ دیسک و صفحه والئو اصل',
+          '✓ چراغ جلو کریستالی کروز',
+          '✓ دیسک چرخ خنک‌شونده تکستار'
+        ]
+      }
+    };
+
+    function testVinPreset(key) {
+      const preset = vinPresets[key];
+      document.getElementById('vinDecoderInput').value = preset.vin;
+      runVinDecoder(preset.vin);
+    }
+
+    function runVinDecoder(vinVal) {
+      const clean = (vinVal || '').toUpperCase().trim();
+      const badge = document.getElementById('vinStatusBadge');
+      const list = document.getElementById('resPartsList');
+
+      // Format gate: Iranian VINs are 17 chars starting with NAAP/NAAB (ایران‌خودرو) or NAS (سایپا)
+      const isValidFormat = clean.length === 17 && /^(NAAP|NAAB|NAS)/.test(clean);
+      if (!isValidFormat) {
+        document.getElementById('resMake').textContent = '—';
+        document.getElementById('resModel').textContent = '—';
+        document.getElementById('resEngine').textContent = '—';
+        document.getElementById('resYear').textContent = '—';
+        list.innerHTML = '';
+        const hint = document.createElement('span');
+        hint.className = 'px-2.5 py-1 rounded-lg bg-rose-950/50 border border-rose-800/50 text-rose-300 font-medium';
+        hint.textContent = 'نمونه معتبر: NAAP03ED4LH198420 (ایران‌خودرو) یا NAS411100P1452098 (سایپا)';
+        list.appendChild(hint);
+        badge.className = 'text-[11px] font-bold text-rose-400 bg-rose-950/70 border border-rose-800/80 px-2.5 py-0.5 rounded-full flex items-center gap-1.5';
+        badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span><span>فرمت شماره شاسی نامعتبر است</span>';
+        return;
+      }
+
+      let match = vinPresets['206'];
+      if (clean.startsWith('NAS')) match = vinPresets['quick'];
+      else if (clean.includes('MJ') || clean.includes('EC')) match = vinPresets['pars'];
+
+      document.getElementById('resMake').textContent = match.make;
+      document.getElementById('resModel').textContent = match.model;
+      document.getElementById('resEngine').textContent = match.engine;
+      document.getElementById('resYear').textContent = match.year;
+
+      list.innerHTML = '';
+      match.parts.forEach(p => {
+        const span = document.createElement('span');
+        span.className = 'px-2.5 py-1 rounded-lg bg-emerald-950/50 border border-emerald-800/50 text-emerald-300 font-medium';
+        span.textContent = p;
+        list.appendChild(span);
+      });
+
+      badge.className = 'text-[11px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/80 px-2.5 py-0.5 rounded-full flex items-center gap-1.5';
+      badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span>شماره شاسی ${clean.substring(0, 8)}... تایید شد</span>`;
+    }
+
+    // 6. Quick View Modal Data & Handlers
+    const productsDb = {
+      p1: { title: 'لنت ترمز جلو پژو ۲۰۶ تیپ ۵ (ایساکو اصل)', code: '16401002', badge: 'ایساکو خط تولید', car: 'پژو ۲۰۶، ۲۰۷، رانا', price: '۸۹۰,۰۰۰ تومان', hasVariants: false, img: 'https://images.unsplash.com/photo-1600790142055-619df03207e6?w=700&auto=format&fit=crop&q=80' },
+      p2: { title: 'چراغ جلو کوئیک کروز اصل (انتخاب سمت چپ یا راست)', code: 'CR-QK-04', badge: 'کروز خط تولید', car: 'کوئیک و کوئیک S', price: '۱,۴۵۰,۰۰۰ تومان', hasVariants: true, img: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=700&auto=format&fit=crop&q=80' },
+      p3: { title: 'کیت کلاچ دیسک و صفحه پژو پارس TU5 والئو اصل', code: '826360-VAL', badge: 'والئو فرانسه اصل', car: 'پارس TU5، ۲۰۶ تیپ ۵', price: '۴,۸۵۰,۰۰۰ تومان', hasVariants: false, img: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80' },
+      p4: { title: 'واتر پمپ سمند موتور ملی EF7 ایساکو اصل', code: 'WP-EF7-88', badge: 'ایساکو شرکتی', car: 'سمند EF7، دنا', price: 'استعلام ساعتی', hasVariants: false, img: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&auto=format&fit=crop&q=80' },
+      p5: { title: 'کمک فنر جلو پراید (عظام اصل خط تولید)', code: 'EZ-PR-110', badge: 'عظام شرکتی', car: 'انواع پراید و وانت', price: '۱,۱۵۰,۰۰۰ تومان', hasVariants: false, img: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=700&auto=format&fit=crop&q=80' },
+      p6: { title: 'دیسک چرخ جلو خنک‌شونده تکستار (دست ۲ عددی)', code: 'TX-206-ROTOR', badge: 'تکستار آلمان', car: 'پژو ۲۰۶ تیپ ۵ و ۲۰۷', price: '۲,۰۵۰,۰۰۰ تومان', hasVariants: false, img: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=700&auto=format&fit=crop&q=80' },
+      p7: { title: 'چراغ خطر عقب پژو ۲۰۷ نئون‌دار کروز', code: 'CR-207-REAR', badge: 'کروز خط تولید', car: 'پژو ۲۰۷ و ۲۰۶', price: '۱,۳۸۰,۰۰۰ تومان', hasVariants: true, img: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700&auto=format&fit=crop&q=80' },
+      p8: { title: 'شمع موتور سوزنی ایریدیوم دنسو ژاپن (دست ۴ عددی)', code: 'IK20-DENSO', badge: 'دنسو ژاپن', car: 'موتورهای TU5، EF7 و M15', price: '۱,۴۲۰,۰۰۰ تومان', hasVariants: false, img: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=700&auto=format&fit=crop&q=80' }
+    };
+
+    let modalQty = 1;
+    function openQuickView(id) {
+      const p = productsDb[id];
+      if (!p) return;
+      document.getElementById('modalProductTitle').textContent = p.title;
+      document.getElementById('modalProductImg').src = p.img;
+      document.getElementById('modalProductBadge').textContent = p.badge;
+      document.getElementById('modalProductCode').textContent = p.code;
+      document.getElementById('modalProductCar').textContent = p.car;
+      document.getElementById('modalProductPrice').textContent = p.price;
+      document.getElementById('modalQtyDisplay').textContent = '۱';
+      modalQty = 1;
+
+      document.getElementById('modalVariantBox').style.display = p.hasVariants ? 'block' : 'none';
+      document.getElementById('quickViewModal').classList.remove('hidden');
+    }
+
+    function closeQuickView() {
+      document.getElementById('quickViewModal').classList.add('hidden');
+    }
+
+    function changeModalQty(delta) {
+      modalQty = Math.max(1, Math.min(5, modalQty + delta));
+      document.getElementById('modalQtyDisplay').textContent = modalQty.toLocaleString('fa-IR');
+    }
+
+    function selectModalVariant(v) {
+      const right = document.getElementById('modalBtnRight');
+      const left = document.getElementById('modalBtnLeft');
+      const pair = document.getElementById('modalBtnPair');
+      [right, left, pair].forEach(b => {
+        b.className = 'cursor-pointer p-2 rounded-xl border border-slate-200 text-slate-700 font-medium text-center';
+      });
+      const active = v === 'right' ? right : (v === 'left' ? left : pair);
+      active.className = 'cursor-pointer p-2 rounded-xl border-2 border-orange-500 bg-orange-50 text-orange-950 font-bold text-center';
+    }
+
+    function addModalToCart() {
+      const title = document.getElementById('modalProductTitle').textContent;
+      alert(`قطعه "${title}" (${modalQty} عدد) به سبد خرید شما اضافه شد!\nجهت تکمیل و استعلام به پنل مدیریت منتقل می‌شوید.`);
+      closeQuickView();
+      window.location.href = '../admin/orders.html';
+    }
+
+    // 7. Interactive 3D Perspective Tilt on Mouse Movement
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotX = -(y / (rect.height / 2)) * 6;
+        const rotY = (x / (rect.width / 2)) * 6;
+        card.style.transform = `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    // Close quick view on backdrop click
+    document.getElementById('quickViewModal').addEventListener('click', e => {
+      if (e.target.id === 'quickViewModal') closeQuickView();
+    });
+  </script>
+</body>
+</html>

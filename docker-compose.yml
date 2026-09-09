@@ -1,0 +1,72 @@
+# Full stack — locally: `docker compose up` (direct ports :3000 / :8000).
+# On the Arvan VPS: `docker compose --profile proxy up -d` adds Caddy on :80/:443.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: yadak
+      POSTGRES_PASSWORD: yadak
+      POSTGRES_DB: yadak
+    volumes:
+      - yadak_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yadak"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.prod
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-insecure-key}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,backend}
+      DATABASE_URL: postgres://yadak:yadak@db:5432/yadak
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      SMS_PROVIDER: ${SMS_PROVIDER:-console}
+      KAVENEGAR_API_KEY: ${KAVENEGAR_API_KEY:-}
+      KAVENEGAR_OTP_TEMPLATE: ${KAVENEGAR_OTP_TEMPLATE:-yadak-otp}
+      PAYMENT_PROVIDER: ${PAYMENT_PROVIDER:-mock}
+      ZIBAL_MERCHANT: ${ZIBAL_MERCHANT:-zibal}
+      MEDIA_ROOT: /data/media
+    volumes:
+      - yadak_media:/data/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      # Browser-side (must be publicly reachable) / server-side (compose network)
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+      API_URL: ${API_URL:-http://backend:8000/api/v1}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  # Arvan-VPS entrypoint only — never started on Railway.
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["proxy"]
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - yadak_caddy_data:/data
+      - yadak_media:/srv/media:ro
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  yadak_pgdata:
+  yadak_media:
+  yadak_caddy_data:
